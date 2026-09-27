@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nodo SL | Desarrollo Web y Apps para Empresas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f4ff',
+                            100: '#e0e9fe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a',
+                        },
+                        accent: {
+                            500: '#10b981',
+                            600: '#059669',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .dark .glass-nav {
+            background: rgba(15, 23, 42, 0.85);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #2563eb 0%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+        }
+        .hero-glow {
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(37,99,235,0.18) 0%, rgba(16,185,129,0.05) 50%, rgba(255,255,255,0) 70%);
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        /* Logo Glow Effects */
+        .logo-glow {
+            filter: drop-shadow(0 0 8px rgba(37, 99, 235, 0.5));
+            transition: all 0.3s ease;
+        }
+        .group:hover .logo-glow {
+            filter: drop-shadow(0 0 12px rgba(16, 185, 129, 0.7));
+            transform: scale(1.05) rotate(3deg);
+        }
+        .logo-pulse {
+            animation: pulse-glow 3s infinite alternate;
+        }
+        @keyframes pulse-glow {
+            0% { filter: drop-shadow(0 0 6px rgba(37, 99, 235, 0.4)); }
+            100% { filter: drop-shadow(0 0 14px rgba(16, 185, 129, 0.8)); }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 transition-colors duration-300">
+
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-slate-200/50 dark:border-slate-800/50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                
+                <!-- NEW LOGO: Futurist Connected Node Icon -->
+                <a href="#" class="flex items-center space-x-3 group">
+                    <div class="relative w-11 h-11 flex items-center justify-center logo-glow logo-pulse">
+                        <svg class="w-full h-full" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="nodoGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#2563eb" />
+                                    <stop offset="100%" stop-color="#10b981" />
+                                </linearGradient>
+                                <linearGradient id="nodoGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#3b82f6" />
+                                    <stop offset="100%" stop-color="#059669" />
+                                </linearGradient>
+                            </defs>
+                            <!-- Outer Hexagon Orbit -->
+                            <polygon points="50,5 90,27 90,73 50,95 10,73 10,27" stroke="url(#nodoGrad1)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none" class="opacity-80"/>
+                            <!-- Connecting Lines -->
+                            <line x1="50" y1="20" x2="25" y2="65" stroke="url(#nodoGrad2)" stroke-width="4" stroke-dasharray="3 3"/>
+                            <line x1="50" y1="20" x2="75" y2="65" stroke="url(#nodoGrad2)" stroke-width="4" stroke-dasharray="3 3"/>
+                            <line x1="25" y1="65" x2="75" y2="65" stroke="url(#nodoGrad1)" stroke-width="4"/>
+                            <!-- Interlinked Nodes -->
+                            <circle cx="50" cy="20" r="9" fill="url(#nodoGrad1)"/>
+                            <circle cx="25" cy="65" r="8" fill="url(#nodoGrad2)"/>
+                            <circle cx="75" cy="65" r="8" fill="url(#nodoGrad1)"/>
+                            <!-- Core Pulsing Center Node -->
+                            <circle cx="50" cy="50" r="6" fill="#ffffff" class="animate-ping opacity-75"/>
+                            <circle cx="50" cy="50" r="5" fill="#3b82f6"/>
+                        </svg>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-black text-2xl tracking-tight text-slate-900 dark:text-white leading-none">
+                            NODO<span class="gradient-text">.SL</span>
+                        </span>
+                        <span class="text-[9px] uppercase font-bold tracking-widest text-slate-400 dark:text-slate-500 mt-0.5">Digital Agency</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex items-center space-x-8 font-medium text-sm">
+                    <a href="#inicio" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Inicio</a>
+                    <a href="#servicios" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Servicios</a>
+                    <a href="#soluciones" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Soluciones Modelo</a>
+                    <a href="#nosotros" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Nosotros</a>
+                    <a href="#calculadora" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Presupuesto</a>
+                    <a href="#contacto" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Contacto</a>
+                </nav>
+
+                <!-- Action Buttons -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <button id="themeToggle" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Cambiar Tema">
+                        <i class="fa-solid fa-moon dark:hidden text-lg"></i>
+                        <i class="fa-solid fa-sun hidden dark:block text-lg"></i>
+                    </button>
+                    <a href="#contacto" class="px-5 py-2.5 rounded-xl text-sm font-semibold text-white gradient-bg shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/30 hover:scale-[1.02] active:scale-95 transition-all">
+                        Iniciar Proyecto
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="flex items-center space-x-2 md:hidden">
+                    <button id="mobileThemeToggle" class="p-2 rounded-lg text-slate-600 dark:text-slate-300">
+                        <i class="fa-solid fa-moon dark:hidden text-lg"></i>
+                        <i class="fa-solid fa-sun hidden dark:block text-lg"></i>
+                    </button>
+                    <button id="menuBtn" class="p-2 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl" id="menuIcon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md px-4 pt-2 pb-6 space-y-3">
+            <a href="#inicio" class="mobile-link block py-2 px-3 text-slate-700 dark:text-slate-200 font-medium rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Inicio</a>
+            <a href="#servicios" class="mobile-link block py-2 px-3 text-slate-700 dark:text-slate-200 font-medium rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Servicios</a>
+            <a href="#soluciones" class="mobile-link block py-2 px-3 text-slate-700 dark:text-slate-200 font-medium rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Soluciones Modelo</a>
+            <a href="#nosotros" class="mobile-link block py-2 px-3 text-slate-700 dark:text-slate-200 font-medium rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Nosotros</a>
+            <a href="#calculadora" class="mobile-link block py-2 px-3 text-slate-700 dark:text-slate-200 font-medium rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Presupuesto</a>
+            <a href="#contacto" class="mobile-link block py-2 px-3 text-slate-700 dark:text-slate-200 font-medium rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Contacto</a>
+            <a href="#contacto" class="mobile-link block text-center py-2.5 px-4 text-sm font-semibold text-white gradient-bg rounded-xl shadow-md">
+                Iniciar Proyecto
+            </a>
+        </div>
+    </header>
+
+    <section id="inicio" class="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden">
+        <div class="hero-glow"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto">
+                <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800/50 mb-6 shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    Desarrollo Web & Mobile de Alta Calidad
+                </span>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight">
+                    Transformamos tu negocio con <span class="gradient-text">software de vanguardia</span>
+                </h1>
+                <p class="mt-6 text-lg sm:text-xl text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
+                    Especialistas en la creación de páginas web optimizadas para restaurantes y comercios, junto a aplicaciones móviles hechas a medida para empresas.
+                </p>
+                
+                <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="#contacto" class="w-full sm:w-auto px-8 py-4 rounded-xl text-base font-bold text-white gradient-bg shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/35 hover:-translate-y-0.5 active:translate-y-0 transition-all text-center">
+                        Solicitar Presupuesto Gratuito
+                    </a>
+                    <a href="#soluciones" class="w-full sm:w-auto px-8 py-4 rounded-xl text-base font-semibold text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 shadow-sm transition-all text-center flex items-center justify-center gap-2">
+                        Explorar Demostraciones <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+
+                <!-- Quality Commitments -->
+                <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 pt-10 border-t border-slate-200/80 dark:border-slate-800/80">
+                    <div class="p-4 rounded-2xl bg-white/60 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 backdrop-blur-sm">
+                        <div class="text-2xl font-bold text-blue-600 dark:text-blue-400">100% Personalizado</div>
+                        <div class="text-xs font-medium text-slate-500 dark:text-slate-400 mt-1">Sin plantillas genéricas</div>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-white/60 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 backdrop-blur-sm">
+                        <div class="text-2xl font-bold text-emerald-500">Máxima Velocidad</div>
+                        <div class="text-xs font-medium text-slate-500 dark:text-slate-400 mt-1">Carga ultrarrápida (SEO)</div>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-white/60 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 backdrop-blur-sm">
+                        <div class="text-2xl font-bold text-blue-600 dark:text-blue-400">Garantía de Código</div>
+                        <div class="text-xs font-medium text-slate-500 dark:text-slate-400 mt-1">Limpio y escalable</div>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-white/60 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 backdrop-blur-sm">
+                        <div class="text-2xl font-bold text-emerald-500">Acompañamiento</div>
+                        <div class="text-xs font-medium text-slate-500 dark:text-slate-400 mt-1">Atención directa constante</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicios" class="py-20 bg-white dark:bg-slate-850 border-y border-slate-200/60 dark:border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-2">Especialización</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Lo que podemos desarrollar para ti</p>
+                <p class="mt-4 text-slate-600 dark:text-slate-400">Creamos plataformas digitales enfocadas en digitalizar operaciones e incrementar las ventas de tu empresa.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Service 1: Restauración -->
+                <div class="group p-8 rounded-3xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/60 hover:shadow-xl hover:shadow-blue-500/5 hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-utensils"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Restaurantes y Hostelería</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">
+                        Desarrollo de menús digitales interactivos mediante código QR, reservas automáticas en vivo y toma de pedidos directa sin comisiones de terceros.
+                    </p>
+                    <ul class="space-y-2 text-xs font-medium text-slate-500 dark:text-slate-300 mb-6">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Menú QR dinámico en tiempo real</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Sistema interactivo de reservas</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Optimización para Google Maps</li>
+                    </ul>
+                </div>
+
+                <!-- Service 2: Ecommerce / Tiendas -->
+                <div class="group p-8 rounded-3xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/60 hover:shadow-xl hover:shadow-blue-500/5 hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-14 h-14 rounded-2xl bg-blue-500/10 text-blue-500 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-store"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Comercio & Tiendas Online</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">
+                        E-commerce intuitivos y seguros. Catálogo interactivo de productos, control de stock automatizado e integración con Stripe, Paypal y Bizum.
+                    </p>
+                    <ul class="space-y-2 text-xs font-medium text-slate-500 dark:text-slate-300 mb-6">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Pagos seguros y Bizum</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Gestión ágil de inventario</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Experiencia fluida en smartphone</li>
+                    </ul>
+                </div>
+
+                <!-- Service 3: Apps Corporativas -->
+                <div class="group p-8 rounded-3xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/60 hover:shadow-xl hover:shadow-blue-500/5 hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-14 h-14 rounded-2xl bg-indigo-500/10 text-indigo-500 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Apps Móviles & Software</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">
+                        Aplicaciones nativas o multiplataforma (iOS/Android/Web) diseñadas para automatizar procesos internos o conectar directamente con tus clientes.
+                    </p>
+                    <ul class="space-y-2 text-xs font-medium text-slate-500 dark:text-slate-300 mb-6">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Apps de gestión y clientes</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Base de datos en la nube</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Notificaciones push instantáneas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="soluciones" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <span class="px-3 py-1 text-xs font-bold uppercase tracking-wider bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 rounded-md">Prototipos & Arquitecturas</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-3">Nuestras Soluciones Modelo</h2>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">Ejemplos interactivos de la tecnología y estética que implementamos para cada sector.</p>
+                </div>
+
+                <!-- Filter Controls -->
+                <div class="mt-6 md:mt-0 flex flex-wrap gap-2" id="portfolioFilters">
+                    <button data-filter="all" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-blue-600 text-white shadow-sm transition-all">Todas</button>
+                    <button data-filter="restaurantes" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-100 transition-all">Hostelería</button>
+                    <button data-filter="tiendas" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-100 transition-all">Tiendas</button>
+                    <button data-filter="apps" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-100 transition-all">Apps</button>
+                </div>
+            </div>
+
+            <!-- Interactive Model Demos Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolioGrid">
+                
+                <!-- Demo 1: Resto Suite -->
+                <div class="project-item restaurants overflow-hidden rounded-3xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/80 shadow-sm hover:shadow-xl transition-all duration-300 group" data-category="restaurantes">
+                    <div class="relative h-52 overflow-hidden bg-slate-900 flex items-center justify-center p-6 text-white">
+                        <div class="absolute inset-0 opacity-40 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                        <div class="relative z-10 text-center">
+                            <i class="fa-solid fa-qrcode text-4xl text-amber-400 mb-3 group-hover:scale-110 transition-transform"></i>
+                            <h4 class="font-bold text-lg">Modelo "RestoSuite"</h4>
+                            <p class="text-xs text-slate-300">Menú digital + Pasarela de Reservas</p>
+                        </div>
+                        <span class="absolute top-4 left-4 bg-amber-500 text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md">Hostelería</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-2">Carta Inteligente y Reservas</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Plataforma que permite actualizar platos e intolerancias al instante desde el móvil sin depender de nadie.</p>
+                        <div class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-700/60">
+                            <span class="text-xs font-semibold text-blue-600 dark:text-blue-400"><i class="fa-solid fa-gauge-high mr-1"></i> Optimizado 100% Mobile</span>
+                            <a href="#contacto" class="text-xs text-emerald-500 font-bold hover:underline">Ver Demo Demo &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Demo 2: Smart Commerce -->
+                <div class="project-item tiendas overflow-hidden rounded-3xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/80 shadow-sm hover:shadow-xl transition-all duration-300 group" data-category="tiendas">
+                    <div class="relative h-52 overflow-hidden bg-slate-900 flex items-center justify-center p-6 text-white">
+                        <div class="absolute inset-0 opacity-40 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                        <div class="relative z-10 text-center">
+                            <i class="fa-solid fa-cart-shopping text-4xl text-blue-400 mb-3 group-hover:scale-110 transition-transform"></i>
+                            <h4 class="font-bold text-lg">Modelo "OmniShop"</h4>
+                            <p class="text-xs text-slate-300">Tienda de ultra alta conversión</p>
+                        </div>
+                        <span class="absolute top-4 left-4 bg-blue-500 text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md">E-Commerce</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-2">Comercio Electrónico Ágil</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Diseño pensado para reducir el abandono de carrito con pago en un solo clic (Bizum / Apple Pay).</p>
+                        <div class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-700/60">
+                            <span class="text-xs font-semibold text-blue-600 dark:text-blue-400"><i class="fa-solid fa-shield-halved mr-1"></i> Pagos Seguros</span>
+                            <a href="#contacto" class="text-xs text-emerald-500 font-bold hover:underline">Pedir Información &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Demo 3: Corporate App -->
+                <div class="project-item apps overflow-hidden rounded-3xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/80 shadow-sm hover:shadow-xl transition-all duration-300 group" data-category="apps">
+                    <div class="relative h-52 overflow-hidden bg-slate-900 flex items-center justify-center p-6 text-white">
+                        <div class="absolute inset-0 opacity-40 bg-[radial-gradient(#6366f1_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                        <div class="relative z-10 text-center">
+                            <i class="fa-solid fa-network-wired text-4xl text-indigo-400 mb-3 group-hover:scale-110 transition-transform"></i>
+                            <h4 class="font-bold text-lg">Modelo "AppConnect"</h4>
+                            <p class="text-xs text-slate-300">Gestión de Clientes y Equipos</p>
+                        </div>
+                        <span class="absolute top-4 left-4 bg-indigo-500 text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md">App Móvil</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-2">Aplicación Corporativa a Medida</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Panel de control unificado, notificaciones push personalizadas e integración con la base de datos de tu empresa.</p>
+                        <div class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-700/60">
+                            <span class="text-xs font-semibold text-blue-600 dark:text-blue-400"><i class="fa-solid fa-layer-group mr-1"></i> iOS & Android</span>
+                            <a href="#contacto" class="text-xs text-emerald-500 font-bold hover:underline">Consultar Caso &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- New Customer Promotion Banner -->
+            <div class="mt-12 p-8 rounded-3xl gradient-bg text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
+                <div>
+                    <span class="bg-white/20 text-white text-[11px] font-bold uppercase px-3 py-1 rounded-full">Programa Primeros Clientes</span>
+                    <h3 class="text-2xl font-bold mt-2">¿Quieres ser uno de nuestros casos de éxito insignia?</h3>
+                    <p class="text-blue-100 text-sm mt-1 max-w-2xl">Ofrecemos un 15% de descuento directo y acompañamiento prioritario para los primeros proyectos de este trimestre.</p>
+                </div>
+                <a href="#contacto" class="whitespace-nowrap px-6 py-3.5 bg-white text-blue-700 hover:bg-blue-50 font-bold text-sm rounded-xl transition-all shadow-md">
+                    Solicitar Oferta Especial
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="calculadora" class="py-20 bg-slate-100 dark:bg-slate-800/50 border-y border-slate-200/60 dark:border-slate-800/60">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <span class="px-3 py-1 text-xs font-bold uppercase bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 rounded-md">Transparencia Total</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mt-3">Calcula tu Presupuesto Estimado</h2>
+                <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">Selecciona las funcionalidades necesarias para obtener una valoración inmediata.</p>
+            </div>
+
+            <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-lg border border-slate-200/80 dark:border-slate-700/80">
+                <div class="space-y-6">
+                    <!-- Step 1: Type -->
+                    <div>
+                        <label class="block text-sm font-bold text-slate-800 dark:text-slate-200 mb-3">1. Selecciona el Tipo de Proyecto</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3" id="projectTypeOptions">
+                            <button type="button" data-val="600" class="calc-type-btn active p-4 rounded-xl border-2 border-blue-600 bg-blue-50/50 dark:bg-blue-900/20 text-left transition-all">
+                                <div class="font-bold text-sm text-slate-900 dark:text-white">Web Restaurante</div>
+                                <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Carta digital QR, reservas, SEO local</div>
+                            </button>
+                            <button type="button" data-val="950" class="calc-type-btn p-4 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-left transition-all hover:border-blue-400">
+                                <div class="font-bold text-sm text-slate-900 dark:text-white">E-Commerce / Tienda</div>
+                                <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Catálogo, pasarela de pagos, inventario</div>
+                            </button>
+                            <button type="button" data-val="1400" class="calc-type-btn p-4 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-left transition-all hover:border-blue-400">
+                                <div class="font-bold text-sm text-slate-900 dark:text-white">App Empresarial</div>
+                                <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">App móvil multiplataforma a medida</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Extras -->
+                    <div>
+                        <label class="block text-sm font-bold text-slate-800 dark:text-slate-200 mb-3">2. Funcionalidades Opcionales</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="calcExtras">
+                            <label class="flex items-center p-3.5 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 cursor-pointer">
+                                <input type="checkbox" value="250" class="calc-extra-check rounded border-slate-300 text-blue-600 focus:ring-blue-500 w-4 h-4">
+                                <span class="ml-3 text-xs font-semibold text-slate-700 dark:text-slate-300">Multi-idioma (+250€)</span>
+                            </label>
+                            <label class="flex items-center p-3.5 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 cursor-pointer">
+                                <input type="checkbox" value="300" class="calc-extra-check rounded border-slate-300 text-blue-600 focus:ring-blue-500 w-4 h-4">
+                                <span class="ml-3 text-xs font-semibold text-slate-700 dark:text-slate-300">Integración CRM / TPV (+300€)</span>
+                            </label>
+                            <label class="flex items-center p-3.5 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 cursor-pointer">
+                                <input type="checkbox" value="200" class="calc-extra-check rounded border-slate-300 text-blue-600 focus:ring-blue-500 w-4 h-4">
+                                <span class="ml-3 text-xs font-semibold text-slate-700 dark:text-slate-300">SEO Avanzado en Google (+200€)</span>
+                            </label>
+                            <label class="flex items-center p-3.5 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 cursor-pointer">
+                                <input type="checkbox" value="150" class="calc-extra-check rounded border-slate-300 text-blue-600 focus:ring-blue-500 w-4 h-4">
+                                <span class="ml-3 text-xs font-semibold text-slate-700 dark:text-slate-300">Mantenimiento Anual (+150€)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Result Panel -->
+                    <div class="pt-6 border-t border-slate-200 dark:border-slate-700 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div>
+                            <span class="text-xs text-slate-500 dark:text-slate-400 block">Inversión Estimada:</span>
+                            <span id="totalPrice" class="text-3xl font-extrabold text-blue-600 dark:text-blue-400">600 €</span>
+                            <span class="text-xs text-slate-400 ml-1">(Impuestos no incl.)</span>
+                        </div>
+                        <a href="#contacto" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold text-xs hover:opacity-90 transition-opacity text-center">
+                            Solicitar este Presupuesto
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="nosotros" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-700">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Equipo Nodo SL" class="w-full h-auto object-cover" onerror="this.src='https://placehold.co/800x600/1e293b/ffffff?text=Equipo+Nodo+SL'">
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-700 hidden sm:block max-w-xs">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-shield-check"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-slate-900 dark:text-white">Compromiso Total</h4>
+                                <p class="text-xs text-slate-500">Transparencia y entregas a tiempo.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-2">Sobre Nodo SL</h2>
+                    <p class="text-3xl font-extrabold text-slate-900 dark:text-white mb-6">Tu partner tecnológico para hacer crecer tu empresa</p>
+                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">
+                        En **Nodo SL** nacemos con la misión de acercar el desarrollo web de alta tecnología a restaurantes, comercios locales y empresas en crecimiento. Nos encargamos de todo el proceso técnico para que tú te concentres en tu negocio.
+                    </p>
+                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
+                        Diseñamos soluciones a medida, con un estándar de diseño moderno, máxima velocidad de carga y soporte cercano de tú a tú.
+                    </p>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xs mt-0.5">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-900 dark:text-white">Trato directo con los desarrolladores</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Sin intermediarios ni demoras en la comunicación.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xs mt-0.5">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-900 dark:text-white">Código 100% optimizado</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Páginas ultrarrápidas que favorecen el posicionamiento SEO.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="py-20 bg-white dark:bg-slate-850 border-t border-slate-200/60 dark:border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12">
+                
+                <div class="lg:col-span-5 space-y-8">
+                    <div>
+                        <h2 class="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-2">Contacto Directo</h2>
+                        <p class="text-3xl font-extrabold text-slate-900 dark:text-white">¿Hablamos sobre tu idea?</p>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mt-3">Te responderemos en menos de 24 horas con una consulta y asesoramiento sin ningún compromiso.</p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-4 p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700/60">
+                            <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-slate-500 dark:text-slate-400 block">Correo Electrónico</span>
+                                <a href="ilopezjodar07@gmail.com" class="text-sm font-bold text-slate-900 dark:text-white hover:text-blue-600 transition-colors">ilopezjodar07@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-4 p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700/60">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-slate-500 dark:text-slate-400 block">Teléfono / WhatsApp</span>
+                                <a href="tel:+34684397744" class="text-sm font-bold text-slate-900 dark:text-white hover:text-emerald-600 transition-colors">+34 684 39 77 44</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-4 p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700/60">
+                            <div class="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-slate-500 dark:text-slate-400 block">Ubicación</span>
+                                <span class="text-sm font-bold text-slate-900 dark:text-white">España (Atención a toda España)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7">
+                    <form id="contactForm" class="p-8 rounded-3xl bg-slate-50 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/80 space-y-5">
+                        <div id="formSuccessAlert" class="hidden p-4 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 text-xs font-semibold border border-emerald-300 dark:border-emerald-800">
+                            <i class="fa-solid fa-circle-check mr-2"></i> ¡Mensaje recibido correctamente! Nos pondremos en contacto contigo de inmediato.
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label for="name" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">Nombre completo</label>
+                                <input type="text" id="name" required class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Ej. Juan Pérez">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">Correo corporativo</label>
+                                <input type="email" id="email" required class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="juan@empresa.com">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="serviceSelect" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">Proyecto de Interés</label>
+                            <select id="serviceSelect" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option>Desarrollo Web para Restaurante / Hostelería</option>
+                                <option>Tienda Online / E-Commerce</option>
+                                <option>Aplicación Móvil o Empresarial</option>
+                                <option>Consulta General</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="message" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">Detalles de la consulta</label>
+                            <textarea id="message" rows="4" required class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Cuéntanos brevemente qué necesitas o qué tipo de negocio tienes..."></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-4 rounded-xl text-sm font-bold text-white gradient-bg shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30 hover:opacity-95 transition-all">
+                            Enviar Mensaje <i class="fa-solid fa-paper-plane ml-2 text-xs"></i>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 flex items-center justify-center">
+                        <svg class="w-full h-full" viewBox="0 0 100 100" fill="none">
+                            <circle cx="50" cy="20" r="12" fill="#3b82f6"/>
+                            <circle cx="25" cy="65" r="12" fill="#10b981"/>
+                            <circle cx="75" cy="65" r="12" fill="#3b82f6"/>
+                            <line x1="50" y1="20" x2="25" y2="65" stroke="#3b82f6" stroke-width="6"/>
+                            <line x1="50" y1="20" x2="75" y2="65" stroke="#10b981" stroke-width="6"/>
+                            <line x1="25" y1="65" x2="75" y2="65" stroke="#3b82f6" stroke-width="6"/>
+                        </svg>
+                    </div>
+                    <span class="font-extrabold text-xl text-white">Nodo SL</span>
+                </div>
+
+                <p class="text-xs text-slate-500 text-center md:text-left">
+                    &copy; <span id="currentYear"></span> Nodo SL. Todos los derechos reservados. Soluciones digitales a medida.
+                </p>
+
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+            // Dark Mode Logic
+            const themeToggleBtns = [document.getElementById('themeToggle'), document.getElementById('mobileThemeToggle')];
+            const initTheme = () => {
+                if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+            };
+            themeToggleBtns.forEach(btn => {
+                if(btn) {
+                    btn.addEventListener('click', () => {
+                        document.documentElement.classList.toggle('dark');
+                        localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+                    });
+                }
+            });
+            initTheme();
+
+            // Mobile Navigation Toggle
+            const menuBtn = document.getElementById('menuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+                mobileLinks.forEach(link => link.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+            }
+
+            // Solutions Filter Logic
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const projectItems = document.querySelectorAll('.project-item');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => {
+                        b.classList.remove('bg-blue-600', 'text-white');
+                        b.classList.add('bg-white', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-300');
+                    });
+                    btn.classList.remove('bg-white', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-300');
+                    btn.classList.add('bg-blue-600', 'text-white');
+
+                    const filterValue = btn.getAttribute('data-filter');
+                    projectItems.forEach(item => {
+                        item.style.display = (filterValue === 'all' || item.getAttribute('data-category') === filterValue) ? 'block' : 'none';
+                    });
+                });
+            });
+
+            // Calculator Logic
+            const typeBtns = document.querySelectorAll('.calc-type-btn');
+            const extraChecks = document.querySelectorAll('.calc-extra-check');
+            const totalPriceEl = document.getElementById('totalPrice');
+            let basePrice = 600;
+
+            typeBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    typeBtns.forEach(b => {
+                        b.classList.remove('active', 'border-blue-600', 'bg-blue-50/50', 'dark:bg-blue-900/20');
+                        b.classList.add('border-slate-200', 'dark:border-slate-700');
+                    });
+                    btn.classList.add('active', 'border-blue-600', 'bg-blue-50/50', 'dark:bg-blue-900/20');
+                    btn.classList.remove('border-slate-200', 'dark:border-slate-700');
+                    basePrice = parseInt(btn.getAttribute('data-val'));
+                    updateTotal();
+                });
+            });
+
+            extraChecks.forEach(check => check.addEventListener('change', updateTotal));
+
+            function updateTotal() {
+                let extrasTotal = 0;
+                extraChecks.forEach(c => { if (c.checked) extrasTotal += parseInt(c.value); });
+                totalPriceEl.textContent = `${basePrice + extrasTotal} €`;
+            }
+
+            // Contact Form
+            const contactForm = document.getElementById('contactForm');
+            const successAlert = document.getElementById('formSuccessAlert');
+
+            if (contactForm) {
+                contactForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    if(successAlert) {
+                        successAlert.classList.remove('hidden');
+                        contactForm.reset();
+                        setTimeout(() => successAlert.classList.add('hidden'), 5000);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
