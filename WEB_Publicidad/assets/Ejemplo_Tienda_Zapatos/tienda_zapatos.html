@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OmniShop Core | Sneakers & Streetwear</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#ecfdf5',
+                            500: '#10b981',
+                            600: '#059669',
+                            900: '#064e3b',
+                            accent: '#34d399'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .gradient-emerald {
+            background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #34d399 0%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col">
+
+    <!-- Promo Banner Top -->
+    <div class="bg-emerald-500/10 border-b border-emerald-500/20 text-emerald-400 text-xs py-2 px-4 text-center font-medium">
+        🚀 Envío gratis en pedidos superiores a 80€ | Entregas en 24/48h | ⚡ Pago exprés con Bizum y Tarjeta
+    </div>
+
+    <!-- Navegación Principal -->
+    <header class="sticky top-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-2xl">
+                        👟
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-xl font-extrabold tracking-wider text-white">
+                            OMNISHOP <span class="gradient-text text-xs px-2 py-0.5 rounded bg-emerald-950 border border-emerald-500/30">CORE</span>
+                        </span>
+                        <span class="text-[10px] text-slate-400 tracking-widest uppercase">Sneaker Store Demo</span>
+                    </div>
+                </a>
+
+                <!-- Búsqueda rápida (Desktop) -->
+                <div class="hidden md:flex items-center relative w-80">
+                    <input type="text" id="searchInput" placeholder="Buscar zapatillas, colores..." class="w-full bg-slate-900 border border-slate-800 rounded-xl pl-10 pr-4 py-2 text-sm text-slate-200 focus:outline-none focus:border-emerald-500 transition">
+                    <svg class="w-4 h-4 text-slate-500 absolute left-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                </div>
+
+                <!-- Acciones (Carrito y Favoritos) -->
+                <div class="flex items-center gap-4">
+                    <button id="cartBtn" class="relative bg-slate-900 border border-slate-800 hover:border-emerald-500/50 p-2.5 rounded-xl text-slate-300 hover:text-white transition flex items-center gap-2">
+                        <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                        <span class="hidden sm:inline text-xs font-semibold">Carrito</span>
+                        <span id="cartBadge" class="bg-emerald-500 text-slate-950 text-[10px] font-extrabold px-1.5 py-0.5 rounded-full">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- Hero Banner -->
+        <section class="relative py-12 md:py-16 bg-gradient-to-b from-slate-900/80 to-slate-950 border-b border-slate-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="space-y-4">
+                        <span class="inline-block px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider">
+                            Novedades 2026
+                        </span>
+                        <h1 class="text-3xl sm:text-5xl font-extrabold text-white leading-tight">
+                            Encuentra las zapatillas más <span class="gradient-text">exclusivas e icónicas</span>
+                        </h1>
+                        <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
+                            Explora nuestra colección con marcas top como Nike, Adidas, Jordan, New Balance y Puma. Modelos 100% auténticos con envío rápido.
+                        </p>
+                    </div>
+                    <div class="relative flex justify-center">
+                        <div class="w-full max-h-72 rounded-3xl bg-gradient-to-tr from-emerald-900/30 to-sky-900/30 border border-slate-800 p-8 flex items-center justify-center overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=800&q=80" alt="Featured Sneaker" class="w-full h-56 object-cover rounded-2xl shadow-2xl hover:scale-105 transition duration-500">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Catálogo y Filtros -->
+        <section class="py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Encabezado de Sección y Filtros -->
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 border-b border-slate-800 pb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-white">Catálogo de Zapatillas</h2>
+                        <p class="text-slate-400 text-xs mt-1">Filtra por tu marca favorita y explora tallas y colores.</p>
+                    </div>
+
+                    <!-- Filtro por Marcas -->
+                    <div class="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-none">
+                        <button class="filter-brand active bg-emerald-500 text-slate-950 font-bold px-4 py-2 rounded-xl text-xs transition" data-brand="all">
+                            Todas
+                        </button>
+                        <button class="filter-brand bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-slate-700 font-semibold px-4 py-2 rounded-xl text-xs transition" data-brand="Nike">
+                            Nike
+                        </button>
+                        <button class="filter-brand bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-slate-700 font-semibold px-4 py-2 rounded-xl text-xs transition" data-brand="Adidas">
+                            Adidas
+                        </button>
+                        <button class="filter-brand bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-slate-700 font-semibold px-4 py-2 rounded-xl text-xs transition" data-brand="Jordan">
+                            Jordan
+                        </button>
+                        <button class="filter-brand bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-slate-700 font-semibold px-4 py-2 rounded-xl text-xs transition" data-brand="New Balance">
+                            New Balance
+                        </button>
+                        <button class="filter-brand bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-slate-700 font-semibold px-4 py-2 rounded-xl text-xs transition" data-brand="Puma">
+                            Puma
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Grid de Productos -->
+                <div id="productGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    
+                    <!-- Producto 1: Nike -->
+                    <div class="product-card bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-emerald-500/50 transition duration-300 flex flex-col" data-brand="Nike" data-title="Nike Air Force 1 '07">
+                        <div class="relative h-56 bg-slate-950 p-4 flex items-center justify-center overflow-hidden group">
+                            <span class="absolute top-3 left-3 bg-slate-900/80 border border-slate-800 text-slate-300 text-[10px] font-bold px-2.5 py-1 rounded-lg">Nike</span>
+                            <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=600&q=80" alt="Nike Air Force 1" class="h-44 object-contain group-hover:scale-110 transition duration-500">
+                        </div>
+                        <div class="p-5 flex flex-col flex-grow justify-between space-y-4">
+                            <div>
+                                <h3 class="text-base font-bold text-white mb-1">Nike Air Force 1 '07</h3>
+                                <p class="text-xs text-slate-400">Color: <span class="text-slate-200">Blanco Triple Clásico</span></p>
+                                
+                                <!-- Tallas -->
+                                <div class="mt-3">
+                                    <span class="text-[11px] font-semibold text-slate-400 block mb-1">Tallas disponibles:</span>
+                                    <div class="flex flex-wrap gap-1">
+                                        <span class="text-[10px] bg-slate-950 border border-slate-800 text-slate-300 px-2 py-0.5 rounded">38</span>
+                                        <span class="text-[10px] bg-slate-950 border border-slate-800 text-slate-300 px-2 py-0.5 rounded">40</span>
+                                        <span class="text-[10px] bg-slate-950 border border-slate-800 text-slate-300 px-2 py-0.5 rounded">42</span>
+                                        <span class="text-[10px] bg-slate-950 border border-slate-800 text-slate-300 px-2 py-0.5 rounded">44</span>
+                                        <span class="text-[10px] bg-slate-950 border border-slate-800 text-slate-300 px-2 py-0.5 rounded">45</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between">
+                                <div>
+                                    <span class="text-xs text-slate-500 block">Precio</span>
+                                    <span class="text-lg font-extrabold text-white">119,99 €</span>
+                                </div>
+                                <button onclick="addToCart('Nike Air Force 1 \'07', 119.99)" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-3 py-2 rounded-xl text-xs transition flex items-center gap-1">
+                                    <span>Añadir</span> +
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Producto 2: Adidas -->
+                    <div class="product-card bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-emerald-500/50 transition duration-300 flex flex-col" data-brand="Adidas" data-title="Adidas Samba OG">
+                        <div class="relative h-56 bg-slate-950 p-4 flex items-center justify-center overflow-hidden group">
+                            <span class="absolute top-3 left-3 bg-slate-900/80 border border-slate-800 text-slate-300 text-[10px] font-bold px-2.5 py-1 rounded-lg">Adidas</span>
+                            <img src="https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=600&q=80" alt="Adidas Samba OG" class="h-44 object-contain group-hover:scale-110 transition duration-500">
+                        </div>
+                        <div class="p-5 flex flex-col flex-grow justify-between space-y-4">
+                            <div>
+                                <h3 class="text-base font-bold text-white mb-1">Adidas Samba OG</h3>
+                                <p class="text-xs text-slate-400">Color: <span class="text-slate-200">Blanco / Tiras Negras</span></p>
+                                
+                                <div class="mt-3">
+                                    <span class="text-[11px] font-semibold text-slate-400 block mb-1">Tallas disponibles:</span>
+                                    <div class="flex flex-wrap gap-1">
+                                        <span class="text-[10px] bg-slate-950 border border-slate-800 text-slate-300 px-2 py-0.5 rounded">36</span>
+                                        <span class="text-[10px] bg-slate-950 border border-slate-800 text-slate-300 px-2 py-0.5 rounded">38</span>
+                                        <span class="text-[10px] bg-slate-950 border border-slate-800 text-slate-300 px-2 py-0.5 rounded">41</span>
+                                        <span class="text-[10px] bg-slate-950 border border-slate-800 text-slate-300 px-2 py-0.5 rounded">43</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between">
+                                <div>
+                                    <span class="text-xs text-slate-500 block">Precio</span>
+                                    <span class="text-lg font-extrabold text-white">120,00 €</span>
+                                </div>
+                                <button onclick="addToCart('Adidas Samba OG', 120.00)" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-3 py-2 rounded-xl text-xs transition flex items-center gap-1">
+                                    <span>Añadir</span> +
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Producto 3: Jordan -->
+                    <div class="product-card bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-emerald-500/50 transition duration-300 flex flex-col" data-brand="Jordan" data-title="Air Jordan 1 Retro High">
+                        <div class="relative h-56 bg-slate-950 p-4 flex items-center justify-center overflow-hidden group">
+                            <span class="absolute top-3 left-3 bg-slate-900/80 border border-slate-800 text-slate-300 text-[10px] font-bold px-2.5 py-1 rounded-lg">Jordan</span>
+                            <img src="https://images.unsplash.com/photo-1516478177764-9fe5be7e2347?auto=format&fit=crop&w=600&q=80" alt="Air Jordan 1 Retro" class="h-44 object-contain group-hover:scale-110 transition duration-500">
+                        </div>
+                        <div class="p-5 flex flex-col flex-grow justify-between space-y-4">
+                            <div>
+                                <h3 class="text-base font-bold text-white mb-1">Air Jordan 1 Retro High</h3>
+                                <p class="text-xs text-slate-400">Color: <span class="text-slate-200">Rojo Chicago / Negro</span></p>
+                                
+                                <div class="mt-3">
+                                    <span class="text-[11px] font-semibold text-slate-400 block mb-1">Tallas disponibles:</span>
+                                    <div class="flex flex-wrap gap-1">
+                                        <span class="text-[10px] bg-slate-950 border border-slate-800 text-slate-300 px-2 py-0.5 rounded">40</span>
+                                        <span class="text-[10px] bg-slate-950 border border-slate-800 text-slate-300 px-2 py-0.5 rounded">42</span>
+                                        <span class="text-[10px] bg-slate-950 border border-slate-800 text-slate-300 px-2 py-0.5 rounded">43</span>
+                                        <span class="text-[10px] bg-slate-950 border border-slate-800 text-slate-300 px-2 py-0.5 rounded">45</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between">
+                                <div>
+                                    <span class="text-xs text-slate-500 block">Precio</span>
+                                    <span class="text-lg font-extrabold text-white">189,99 €</span>
+                                </div>
+                                <button onclick="addToCart('Air Jordan 1 Retro High', 189.99)" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-3 py-2 rounded-xl text-xs transition flex items-center gap-1">
+                                    <span>Añadir</span> +
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Producto 4: New Balance -->
+                    <div class="product-card bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-emerald-500/50 transition duration-300 flex flex-col" data-brand="New Balance" data-title="New Balance 550 Vintage">
+                        <div class="relative h-56 bg-slate-950 p-4 flex items-center justify-center overflow-hidden group">
+                            <span class="absolute top-3 left-3 bg-slate-900/80 border border-slate-800 text-slate-300 text-[10px] font-bold px-2.5 py-1 rounded-lg">New Balance</span>
+                            <img src="https://images.unsplash.com/photo-1539185441755-769473a23570?auto=format&fit=crop&w=600&q=80" alt="New Balance 550" class="h-44 object-contain group-hover:scale-110 transition duration-500">
+                        </div>
+                        <div class="p-5 flex flex-col flex-grow justify-between space-y-4">
+                            <div>
+                                <h3 class="text-base font-bold text-white mb-1">New Balance 550 Vintage</h3>
+                                <p class="text-xs text-slate-400">Color: <span class="text-slate-200">Blanco / Verde Bosque</span></p>
+                                
+                                <div class="mt-3">
+                                    <span class="text-[11px] font-semibold text-slate-400 block mb-1">Tallas disponibles:</span>
+                                    <div class="flex flex-wrap gap-1">
+                                        <span class="text-[10px] bg-slate-950 border border-slate-800 text-slate-300 px-2 py-0.5 rounded">37</span>
+                                        <span class="text-[10px] bg-slate-950 border border-slate-800 text-slate-300 px-2 py-0.5 rounded">39</span>
+                                        <span class="text-[10px] bg-slate-950 border border-slate-800 text-slate-300 px-2 py-0.5 rounded">41</span>
+                                        <span class="text-[10px] bg-slate-950 border border-slate-800 text-slate-300 px-2 py-0.5 rounded">44</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between">
+                                <div>
+                                    <span class="text-xs text-slate-500 block">Precio</span>
+                                    <span class="text-lg font-extrabold text-white">140,00 €</span>
+                                </div>
+                                <button onclick="addToCart('New Balance 550 Vintage', 140.00)" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-3 py-2 rounded-xl text-xs transition flex items-center gap-1">
+                                    <span>Añadir</span> +
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Producto 5: Nike Dunk Low -->
+                    <div class="product-card bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-emerald-500/50 transition duration-300 flex flex-col" data-brand="Nike" data-title="Nike Dunk Low Retro">
+                        <div class="relative h-56 bg-slate-950 p-4 flex items-center justify-center overflow-hidden group">
+                            <span class="absolute top-3 left-3 bg-slate-900/80 border border-slate-800 text-slate-300 text-[10px] font-bold px-2.5 py-1 rounded-lg">Nike</span>
+                            <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=600&q=80" alt="Nike Dunk Low" class="h-44 object-contain group-hover:scale-110 transition duration-500">
+                        </div>
+                        <div class="p-5 flex flex-col flex-grow justify-between space-y-4">
+                            <div>
+                                <h3 class="text-base font-bold text-white mb-1">Nike Dunk Low Retro</h3>
+                                <p class="text-xs text-slate-400">Color: <span class="text-slate-200">Panda (Blanco / Negro)</span></p>
+                                
+                                <div class="mt-3">
+                                    <span class="text-[11px] font-semibold text-slate-400 block mb-1">Tallas disponibles:</span>
+                                    <div class="flex flex-wrap gap-1">
+                                        <span class="text-[10px] bg-slate-950 border border-slate-800 text-slate-300 px-2 py-0.5 rounded">38</span>
+                                        <span class="text-[10px] bg-slate-950 border border-slate-800 text-slate-300 px-2 py-0.5 rounded">39</span>
+                                        <span class="text-[10px] bg-slate-950 border border-slate-800 text-slate-300 px-2 py-0.5 rounded">42</span>
+                                        <span class="text-[10px] bg-slate-950 border border-slate-800 text-slate-300 px-2 py-0.5 rounded">43</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between">
+                                <div>
+                                    <span class="text-xs text-slate-500 block">Precio</span>
+                                    <span class="text-lg font-extrabold text-white">109,99 €</span>
+                                </div>
+                                <button onclick="addToCart('Nike Dunk Low Retro', 109.99)" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-3 py-2 rounded-xl text-xs transition flex items-center gap-1">
+                                    <span>Añadir</span> +
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Producto 6: Puma -->
+                    <div class="product-card bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-emerald-500/50 transition duration-300 flex flex-col" data-brand="Puma" data-title="Puma RS-X Triple">
+                        <div class="relative h-56 bg-slate-950 p-4 flex items-center justify-center overflow-hidden group">
+                            <span class="absolute top-3 left-3 bg-slate-900/80 border border-slate-800 text-slate-300 text-[10px] font-bold px-2.5 py-1 rounded-lg">Puma</span>
+                            <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&w=600&q=80" alt="Puma RS-X" class="h-44 object-contain group-hover:scale-110 transition duration-500">
+                        </div>
+                        <div class="p-5 flex flex-col flex-grow justify-between space-y-4">
+                            <div>
+                                <h3 class="text-base font-bold text-white mb-1">Puma RS-X Triple</h3>
+                                <p class="text-xs text-slate-400">Color: <span class="text-slate-200">Negro / Gris Futuro</span></p>
+                                
+                                <div class="mt-3">
+                                    <span class="text-[11px] font-semibold text-slate-400 block mb-1">Tallas disponibles:</span>
+                                    <div class="flex flex-wrap gap-1">
+                                        <span class="text-[10px] bg-slate-950 border border-slate-800 text-slate-300 px-2 py-0.5 rounded">40</span>
+                                        <span class="text-[10px] bg-slate-950 border border-slate-800 text-slate-300 px-2 py-0.5 rounded">41</span>
+                                        <span class="text-[10px] bg-slate-950 border border-slate-800 text-slate-300 px-2 py-0.5 rounded">44</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between">
+                                <div>
+                                    <span class="text-xs text-slate-500 block">Precio</span>
+                                    <span class="text-lg font-extrabold text-white">110,00 €</span>
+                                </div>
+                                <button onclick="addToCart('Puma RS-X Triple', 110.00)" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-3 py-2 rounded-xl text-xs transition flex items-center gap-1">
+                                    <span>Añadir</span> +
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Mensaje cuando no hay productos filtrados -->
+                <div id="noResults" class="hidden text-center py-16">
+                    <p class="text-slate-400 text-base">No se encontraron zapatillas con ese filtro.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal Drawer de Carrito -->
+    <div id="cartModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex justify-end transition-opacity">
+        <div class="w-full max-w-md bg-slate-900 border-l border-slate-800 h-full p-6 flex flex-col justify-between shadow-2xl">
+            <div>
+                <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+                    <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                        🛒 Tu Carrito (<span id="cartCount">0</span>)
+                    </h3>
+                    <button id="closeCartBtn" class="text-slate-400 hover:text-white text-xl font-bold p-1">&times;</button>
+                </div>
+
+                <!-- Lista de Ítems del Carrito -->
+                <div id="cartItemsList" class="mt-4 space-y-3 max-h-96 overflow-y-auto pr-1">
+                    <p id="emptyCartText" class="text-xs text-slate-500 text-center py-8">Tu carrito está vacío actualmente.</p>
+                </div>
+            </div>
+
+            <div class="pt-4 border-t border-slate-800 space-y-4">
+                <div class="flex justify-between items-center text-sm font-bold text-white">
+                    <span>Total estimado:</span>
+                    <span id="cartTotal" class="text-xl text-emerald-400">0,00 €</span>
+                </div>
+                <button onclick="alert('¡Gracias por probar este prototipo de tienda!')" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold py-3.5 rounded-xl transition text-sm shadow-lg shadow-emerald-500/20">
+                    Proceder al Pago
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 border-t border-slate-800 py-8 text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-2">
+            <p><strong class="text-slate-300">OmniShop Core</strong> - Prototipo Demo de E-commerce desarrollado para Nodo SL</p>
+            <p>© 2026 Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Lógica de Filtrado y Carrito en JavaScript -->
+    <script>
+        // 1. Filtrado por Marca
+        const brandButtons = document.querySelectorAll('.filter-brand');
+        const productCards = document.querySelectorAll('.product-card');
+        const noResults = document.getElementById('noResults');
+        const searchInput = document.getElementById('searchInput');
+
+        function filterProducts() {
+            const activeBrand = document.querySelector('.filter-brand.active').dataset.brand;
+            const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
+            let visibleCount = 0;
+
+            productCards.forEach(card => {
+                const cardBrand = card.dataset.brand;
+                const cardTitle = card.dataset.title.toLowerCase();
+
+                const matchesBrand = (activeBrand === 'all' || cardBrand === activeBrand);
+                const matchesSearch = cardTitle.includes(searchTerm);
+
+                if (matchesBrand && matchesSearch) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            if (visibleCount === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+            }
+        }
+
+        brandButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                brandButtons.forEach(b => {
+                    b.classList.remove('active', 'bg-emerald-500', 'text-slate-950', 'font-bold');
+                    b.classList.add('bg-slate-900', 'border', 'border-slate-800', 'text-slate-300');
+                });
+
+                btn.classList.add('active', 'bg-emerald-500', 'text-slate-950', 'font-bold');
+                btn.classList.remove('bg-slate-900', 'border', 'border-slate-800', 'text-slate-300');
+
+                filterProducts();
+            });
+        });
+
+        if (searchInput) {
+            searchInput.addEventListener('input', filterProducts);
+        }
+
+        // 2. Sistema de Carrito Simple
+        let cart = [];
+
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            updateCartUI();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const cartBadge = document.getElementById('cartBadge');
+            const cartCount = document.getElementById('cartCount');
+            const cartTotal = document.getElementById('cartTotal');
+            const cartItemsList = document.getElementById('cartItemsList');
+            const emptyCartText = document.getElementById('emptyCartText');
+
+            cartBadge.textContent = cart.length;
+            cartCount.textContent = cart.length;
+
+            let total = 0;
+            cartItemsList.innerHTML = '';
+
+            if (cart.length === 0) {
+                cartItemsList.appendChild(emptyCartText);
+            } else {
+                cart.forEach((item, index) => {
+                    total += item.price;
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'flex items-center justify-between p-3 bg-slate-950 border border-slate-800 rounded-xl text-xs';
+                    itemElement.innerHTML = `
+                        <div>
+                            <p class="font-bold text-white">${item.name}</p>
+                            <p class="text-emerald-400 font-semibold">${item.price.toFixed(2)} €</p>
+                        </div>
+                        <button onclick="removeFromCart(${index})" class="text-rose-400 hover:text-rose-300 font-bold px-2 py-1">Quitar</button>
+                    `;
+                    cartItemsList.appendChild(itemElement);
+                });
+            }
+
+            cartTotal.textContent = `${total.toFixed(2)} €`;
+        }
+
+        // 3. Abrir / Cerrar Modal de Carrito
+        const cartBtn = document.getElementById('cartBtn');
+        const closeCartBtn = document.getElementById('closeCartBtn');
+        const cartModal = document.getElementById('cartModal');
+
+        cartBtn.addEventListener('click', () => {
+            cartModal.classList.remove('hidden');
+        });
+
+        closeCartBtn.addEventListener('click', () => {
+            cartModal.classList.add('hidden');
+        });
+
+        cartModal.addEventListener('click', (e) => {
+            if (e.target === cartModal) {
+                cartModal.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

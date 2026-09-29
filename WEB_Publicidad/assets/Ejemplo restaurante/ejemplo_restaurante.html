@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa Don Antonio | Taberna & Restaurante Tradicional</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        parchment: {
+                            50: '#fffefb',
+                            100: '#fdfbf7',
+                            200: '#f7f1e5',
+                            300: '#eee3cf',
+                            400: '#e0cea8'
+                        },
+                        burgundy: {
+                            600: '#8b1e2f',
+                            700: '#721724',
+                            800: '#58111a',
+                            900: '#3d0a11'
+                        },
+                        gold: {
+                            300: '#e5c983',
+                            400: '#d4af37',
+                            500: '#c5a059',
+                            600: '#a37f3a'
+                        },
+                        wood: {
+                            700: '#4a3324',
+                            800: '#342318',
+                            900: '#21150e'
+                        }
+                    },
+                    fontFamily: {
+                        cinzel: ['Cinzel', 'serif'],
+                        garamond: ['Cormorant Garamond', 'serif'],
+                        lora: ['Lora', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #fdfbf7;
+            color: #21150e;
+            font-family: 'Lora', serif;
+            background-image: radial-gradient(#c5a059 0.4px, transparent 0.4px);
+            background-size: 24px 24px;
+            background-color: #fdfbf7;
+        }
+
+        .font-heading {
+            font-family: 'Cinzel', serif;
+        }
+
+        .font-subheading {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .gold-border {
+            border: 2px solid #c5a059;
+            box-shadow: 0 0 15px rgba(197, 160, 89, 0.15);
+        }
+
+        .ornate-frame {
+            border: 3px double #c5a059;
+            outline: 1px solid #721724;
+            outline-offset: 4px;
+        }
+
+        .gold-text-gradient {
+            background: linear-gradient(135deg, #f3e5ab 0%, #c5a059 50%, #947128 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gold-bg-gradient {
+            background: linear-gradient(135deg, #d4af37 0%, #c5a059 50%, #a37f3a 100%);
+        }
+
+        /* Tooltip style for allergens */
+        .allergen-icon {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .allergen-icon:hover {
+            transform: scale(1.15);
+            filter: drop-shadow(0px 2px 4px rgba(197, 160, 89, 0.6));
+        }
+
+        .allergen-icon .tooltip {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%) translateY(4px);
+            background-color: #342318;
+            color: #f7f1e5;
+            text-align: center;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-family: 'Lora', serif;
+            white-space: nowrap;
+            z-index: 20;
+            border: 1px solid #c5a059;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            pointer-events: none;
+        }
+
+        .allergen-icon:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #21150e;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c5a059;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d4af37;
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-gold-500 selection:text-wood-900">
+
+    <!-- Topbar Informativa -->
+    <div class="bg-wood-900 text-parchment-200 border-b border-gold-500/30 text-xs py-2 px-4 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-6">
+                <span class="flex items-center gap-1.5 text-gold-400">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    Calle de la Cruz, 14, 28012 Madrid
+                </span>
+                <span class="hidden md:flex items-center gap-1.5 text-parchment-300">
+                    <svg class="w-3.5 h-3.5 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    Almuerzos: 13:00 - 16:30 | Cenas: 20:00 - 23:30
+                </span>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="tel:+34912345678" class="text-gold-400 font-semibold hover:text-gold-300 transition flex items-center gap-1">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                    +34 912 34 56 78
+                </a>
+                <span class="text-gold-500/50">|</span>
+                <span class="text-emerald-400 flex items-center gap-1">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                    Cocina Abierta
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Principal -->
+    <header class="bg-burgundy-900 text-parchment-100 shadow-2xl border-b-2 border-gold-500 relative z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-24">
+                
+                <!-- Logo Tradicional Casa Don Antonio -->
+                <a href="#" class="flex items-center gap-4 group">
+                    <div class="w-14 h-14 rounded-full bg-wood-900 border-2 border-gold-500 flex items-center justify-center p-2 shadow-inner group-hover:border-gold-300 transition">
+                        <!-- Escudo Tradicional / Jarra / Sol SVG -->
+                        <svg class="w-10 h-10 text-gold-400" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M50 10 L85 30 V65 L50 90 L15 65 V30 Z" stroke="#c5a059" stroke-width="3" fill="#21150e"/>
+                            <circle cx="50" cy="40" r="12" stroke="#c5a059" stroke-width="2.5" fill="none"/>
+                            <path d="M42 62 Q50 52 58 62 L55 75 Q50 78 45 75 Z" fill="#c5a059"/>
+                            <path d="M35 30 L65 30" stroke="#c5a059" stroke-width="2"/>
+                            <path d="M50 20 L50 30" stroke="#c5a059" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="block font-heading text-2xl sm:text-3xl font-extrabold tracking-wider text-parchment-100 uppercase">
+                            Casa Don Antonio
+                        </span>
+                        <span class="block font-subheading text-xs sm:text-sm tracking-widest text-gold-400 uppercase italic">
+                            Taberna & Restaurante • Fundado en 1924
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Menú Navegación Desktop -->
+                <nav class="hidden lg:flex items-center gap-8 font-heading text-sm font-semibold text-parchment-200 tracking-wider">
+                    <a href="#historia" class="hover:text-gold-400 transition py-1 border-b-2 border-transparent hover:border-gold-400">El Restaurante</a>
+                    <a href="#galeria" class="hover:text-gold-400 transition py-1 border-b-2 border-transparent hover:border-gold-400">Nuestros Rincónes</a>
+                    <a href="#alergenos" class="hover:text-gold-400 transition py-1 border-b-2 border-transparent hover:border-gold-400">Glosario Alérgenos</a>
+                    <a href="#carta" class="hover:text-gold-400 transition py-1 border-b-2 border-transparent hover:border-gold-400">La Carta</a>
+                    <a href="#contacto" class="hover:text-gold-400 transition py-1 border-b-2 border-transparent hover:border-gold-400">Ubicación</a>
+                </nav>
+
+                <!-- Botón de Reserva -->
+                <div class="hidden sm:block">
+                    <button onclick="openModal()" class="gold-bg-gradient hover:brightness-110 text-wood-900 font-heading font-bold px-6 py-3 rounded border border-gold-300 shadow-lg transition transform hover:-translate-y-0.5 uppercase tracking-wider text-xs">
+                        Reservar Mesa
+                    </button>
+                </div>
+
+                <!-- Botón Menú Móvil -->
+                <button id="mobileMenuBtn" class="lg:hidden text-gold-400 p-2 focus:outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menú Desplegable Móvil -->
+        <div id="mobileDropdown" class="hidden lg:hidden bg-wood-900 border-t border-gold-500/30 px-6 py-6 space-y-4 font-heading text-sm">
+            <a href="#historia" class="block text-parchment-100 hover:text-gold-400 py-1">El Restaurante</a>
+            <a href="#galeria" class="block text-parchment-100 hover:text-gold-400 py-1">Nuestros Rincónes</a>
+            <a href="#alergenos" class="block text-parchment-100 hover:text-gold-400 py-1">Glosario Alérgenos</a>
+            <a href="#carta" class="block text-parchment-100 hover:text-gold-400 py-1">La Carta</a>
+            <a href="#contacto" class="block text-parchment-100 hover:text-gold-400 py-1">Ubicación</a>
+            <button onclick="openModal()" class="w-full text-center gold-bg-gradient text-wood-900 font-bold py-3 rounded uppercase tracking-wider text-xs mt-4">
+                Reservar Mesa
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section con estilo clásico -->
+    <section class="relative min-h-[85vh] flex items-center justify-center bg-wood-900 overflow-hidden py-20">
+        <!-- Imagen Fondo con overlay borgoña y madera -->
+        <div class="absolute inset-0 z-0 opacity-35 bg-cover bg-center filter contrast-125" style="background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=1920');"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-wood-900 via-burgundy-900/60 to-wood-900/90 z-0"></div>
+
+        <div class="relative z-10 max-w-5xl mx-auto px-4 text-center text-parchment-100 space-y-8">
+            <div class="inline-block px-4 py-1 border-y border-gold-500 text-gold-400 font-subheading text-lg tracking-widest uppercase">
+                Sabor, Tradición y Solera Castellana
+            </div>
+
+            <h1 class="font-heading text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-tight gold-text-gradient uppercase drop-shadow-2xl">
+                Casa Don Antonio
+            </h1>
+
+            <p class="font-subheading text-xl sm:text-2xl text-parchment-200 max-w-3xl mx-auto italic leading-relaxed">
+                "Cien años rindiendo culto a la gastronomía tradicional española. Carnes a la leña, guisos a fuego lento y los mejores caldos de nuestra bodega."
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-5 pt-4">
+                <a href="#carta" class="w-full sm:w-auto gold-bg-gradient text-wood-900 font-heading font-bold px-8 py-4 rounded border border-gold-300 shadow-xl hover:brightness-110 transition tracking-wider text-sm uppercase">
+                    Explorar la Carta
+                </a>
+                <button onclick="openModal()" class="w-full sm:w-auto bg-burgundy-800 hover:bg-burgundy-700 text-parchment-100 font-heading font-semibold px-8 py-4 rounded border border-gold-500/50 shadow-xl transition tracking-wider text-sm uppercase">
+                    Reservar Mesa Online
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección El Restaurante / Galería -->
+    <section id="historia" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <span class="text-burgundy-700 font-subheading text-xl italic font-semibold">Un viaje en el tiempo</span>
+            <h2 class="font-heading text-3xl sm:text-4xl font-bold text-wood-900 uppercase tracking-wide mt-1">Cien Años de Tradición Gastronómica</h2>
+            <div class="w-24 h-0.5 bg-gold-500 mx-auto my-4"></div>
+            <p class="text-wood-800 text-base leading-relaxed">
+                Fundada en 1924 por Don Antonio Soria, nuestra taberna conserva intacto el espíritu de las antiguas posadas castellanas. Vigas de madera centenarias, azulejería tradicional y cazuelas de barro donde el tiempo parece haberse detenido.
+            </p>
+        </div>
+
+        <!-- Galería de imágenes con marcos tradicionales -->
+        <div id="galeria" class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Foto 1: Salón Principal -->
+            <div class="group relative bg-parchment-200 p-3 ornate-frame shadow-xl rounded hover:-translate-y-1 transition duration-300">
+                <div class="overflow-hidden h-64 relative">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=800" alt="Salón Comedor Principal" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 filter sepia-[0.15]">
+                </div>
+                <div class="pt-4 text-center">
+                    <h3 class="font-heading text-lg font-bold text-wood-900">Salón Castellano</h3>
+                    <p class="font-subheading text-sm text-burgundy-700 italic">Vigas vistas & ambiente acogedor</p>
+                </div>
+            </div>
+
+            <!-- Foto 2: La Bodega -->
+            <div class="group relative bg-parchment-200 p-3 ornate-frame shadow-xl rounded hover:-translate-y-1 transition duration-300">
+                <div class="overflow-hidden h-64 relative">
+                    <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&q=80&w=800" alt="Bodega Subterránea" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 filter sepia-[0.15]">
+                </div>
+                <div class="pt-4 text-center">
+                    <h3 class="font-heading text-lg font-bold text-wood-900">La Bodega Subterránea</h3>
+                    <p class="font-subheading text-sm text-burgundy-700 italic">Más de 200 referencias D.O.</p>
+                </div>
+            </div>
+
+            <!-- Foto 3: El Patio Andaluz / Terraza -->
+            <div class="group relative bg-parchment-200 p-3 ornate-frame shadow-xl rounded hover:-translate-y-1 transition duration-300">
+                <div class="overflow-hidden h-64 relative">
+                    <img src="https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?auto=format&fit=crop&q=80&w=800" alt="Patio Andaluz" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 filter sepia-[0.15]">
+                </div>
+                <div class="pt-4 text-center">
+                    <h3 class="font-heading text-lg font-bold text-wood-900">Patio de los Naranjos</h3>
+                    <p class="font-subheading text-sm text-burgundy-700 italic">Terraza ajardinada interior</p>
+                </div>
+            </div>
+
+            <!-- Foto 4: La Cocina & Horno -->
+            <div class="group relative bg-parchment-200 p-3 ornate-frame shadow-xl rounded hover:-translate-y-1 transition duration-300">
+                <div class="overflow-hidden h-64 relative">
+                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=800" alt="Horno de Leña" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 filter sepia-[0.15]">
+                </div>
+                <div class="pt-4 text-center">
+                    <h3 class="font-heading text-lg font-bold text-wood-900">Horno de Leña</h3>
+                    <p class="font-subheading text-sm text-burgundy-700 italic">Asados tradicionales a fuego lento</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Glosario de Alérgenos -->
+    <section id="alergenos" class="py-16 bg-parchment-200 border-y-2 border-gold-500/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-parchment-100 border-2 border-gold-500 rounded-xl p-8 shadow-2xl relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 opacity-5 pointer-events-none">
+                    <svg class="w-80 h-80 text-wood-900" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                </div>
+
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                    <span class="inline-block bg-burgundy-900 text-gold-400 font-heading text-xs px-3 py-1 rounded-full uppercase tracking-widest mb-2">Información Alimentaria</span>
+                    <h2 class="font-heading text-2xl sm:text-3xl font-bold text-wood-900 uppercase">Glosario de Alérgenos</h2>
+                    <p class="text-sm text-wood-800 mt-2">
+                        En cumplimiento del Reglamento (UE) 1169/2011, identificamos los alérgenos presentes en nuestras elaboraciones con estos mini-dibujos explicativos:
+                    </p>
+                </div>
+
+                <!-- Grid con los 7 Alérgenos y sus Mini-dibujos Vectoriales -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4">
+                    
+                    <!-- 1. Gluten -->
+                    <div class="p-4 bg-parchment-50 border border-gold-500/30 rounded-lg text-center hover:border-gold-500 transition group">
+                        <div class="w-12 h-12 mx-auto mb-2 rounded-full bg-amber-100 border border-amber-400 text-amber-700 flex items-center justify-center group-hover:scale-110 transition">
+                            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2v20M12 4l-4 3M12 8l4 3M12 12l-4 3M12 16l4 3" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h4 class="font-heading font-bold text-xs text-wood-900">Gluten</h4>
+                        <p class="text-[11px] text-wood-700 mt-1">Trigo, cebada, centeno</p>
+                    </div>
+
+                    <!-- 2. Lácteos -->
+                    <div class="p-4 bg-parchment-50 border border-gold-500/30 rounded-lg text-center hover:border-gold-500 transition group">
+                        <div class="w-12 h-12 mx-auto mb-2 rounded-full bg-blue-100 border border-blue-400 text-blue-700 flex items-center justify-center group-hover:scale-110 transition">
+                            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M8 2h8v4H8zM7 6h10l1 16H6zM10 11h4"/>
+                            </svg>
+                        </div>
+                        <h4 class="font-heading font-bold text-xs text-wood-900">Lácteos</h4>
+                        <p class="text-[11px] text-wood-700 mt-1">Leche, queso, mantequilla</p>
+                    </div>
+
+                    <!-- 3. Huevo -->
+                    <div class="p-4 bg-parchment-50 border border-gold-500/30 rounded-lg text-center hover:border-gold-500 transition group">
+                        <div class="w-12 h-12 mx-auto mb-2 rounded-full bg-yellow-100 border border-yellow-400 text-yellow-700 flex items-center justify-center group-hover:scale-110 transition">
+                            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 3C8 3 5 8 5 14c0 4 3 7 7 7s7-3 7-7c0-6-3-11-7-11z"/>
+                            </svg>
+                        </div>
+                        <h4 class="font-heading font-bold text-xs text-wood-900">Huevo</h4>
+                        <p class="text-[11px] text-wood-700 mt-1">Huevos y derivados</p>
+                    </div>
+
+                    <!-- 4. Pescado -->
+                    <div class="p-4 bg-parchment-50 border border-gold-500/30 rounded-lg text-center hover:border-gold-500 transition group">
+                        <div class="w-12 h-12 mx-auto mb-2 rounded-full bg-sky-100 border border-sky-400 text-sky-700 flex items-center justify-center group-hover:scale-110 transition">
+                            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 12c2.5-2 3.5-5 3.5-5s-3 1-5 3.5C14.5 8.5 11 8 8 10c-3 2-4 5-4 5s3 0 5-1.5c1.5 2 3.5 2.5 5 2.5 2 0 3.5-.5 4-1zM6 12a1 1 0 100-2 1 1 0 000 2z"/>
+                            </svg>
+                        </div>
+                        <h4 class="font-heading font-bold text-xs text-wood-900">Pescado</h4>
+                        <p class="text-[11px] text-wood-700 mt-1">Pescado blanco y azul</p>
+                    </div>
+
+                    <!-- 5. Mariscos -->
+                    <div class="p-4 bg-parchment-50 border border-gold-500/30 rounded-lg text-center hover:border-gold-500 transition group">
+                        <div class="w-12 h-12 mx-auto mb-2 rounded-full bg-rose-100 border border-rose-400 text-rose-700 flex items-center justify-center group-hover:scale-110 transition">
+                            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M6 12c-2 0-3-2-3-4s2-3 4-2c2 1 4 4 4 4s-2 2-5 2zm12 0c2 0 3-2 3-4s-2-3-4-2c-2 1-4 4-4 4s2 2 5 2zm-6 8c-3 0-5-3-5-6s3-5 5-5 5 2 5 5-2 6-5 6z"/>
+                            </svg>
+                        </div>
+                        <h4 class="font-heading font-bold text-xs text-wood-900">Mariscos</h4>
+                        <p class="text-[11px] text-wood-700 mt-1">Gambas, pulpo, moluscos</p>
+                    </div>
+
+                    <!-- 6. Frutos de Cáscara -->
+                    <div class="p-4 bg-parchment-50 border border-gold-500/30 rounded-lg text-center hover:border-gold-500 transition group">
+                        <div class="w-12 h-12 mx-auto mb-2 rounded-full bg-orange-100 border border-orange-400 text-orange-800 flex items-center justify-center group-hover:scale-110 transition">
+                            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 3c4 0 7 4 7 9s-3 9-7 9-7-4-7-9 3-9 7-9zm0 0v18"/>
+                            </svg>
+                        </div>
+                        <h4 class="font-heading font-bold text-xs text-wood-900">Frutos Secos</h4>
+                        <p class="text-[11px] text-wood-700 mt-1">Almendras, nueces, piñones</p>
+                    </div>
+
+                    <!-- 7. Sulfitos -->
+                    <div class="p-4 bg-parchment-50 border border-gold-500/30 rounded-lg text-center hover:border-gold-500 transition group">
+                        <div class="w-12 h-12 mx-auto mb-2 rounded-full bg-purple-100 border border-purple-400 text-purple-800 flex items-center justify-center group-hover:scale-110 transition">
+                            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M8 2h8l-1 7a5 5 0 01-10 0L8 2zm4 14v6m-4 0h8"/>
+                            </svg>
+                        </div>
+                        <h4 class="font-heading font-bold text-xs text-wood-900">Sulfitos</h4>
+                        <p class="text-[11px] text-wood-700 mt-1">Vinos y vinagres</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección La Carta -->
+    <section id="carta" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <span class="text-burgundy-700 font-subheading text-xl italic font-semibold">Gastronomía Auténtica</span>
+            <h2 class="font-heading text-3xl sm:text-5xl font-extrabold text-wood-900 uppercase tracking-wide mt-1">Nuestra Carta</h2>
+            <div class="w-32 h-1 bg-gold-500 mx-auto my-4"></div>
+            <p class="text-wood-800 text-sm sm:text-base italic">
+                Selección de especialidades elaboradas con ingredientes de la máxima calidad y denominación de origen.
+            </p>
+        </div>
+
+        <!-- Categorías / Tabs de la Carta -->
+        <div class="flex flex-wrap justify-center gap-2 sm:gap-4 mb-12 border-b border-gold-500/30 pb-6">
+            <button onclick="filterMenu('entrantes')" class="menu-tab active gold-bg-gradient text-wood-900 font-heading font-bold px-5 py-2.5 rounded text-xs sm:text-sm uppercase tracking-wider transition shadow">
+                Entrantes & Tapas
+            </button>
+            <button onclick="filterMenu('guisos')" class="menu-tab bg-parchment-200 text-wood-900 hover:bg-gold-500/20 font-heading font-bold px-5 py-2.5 rounded text-xs sm:text-sm uppercase tracking-wider transition">
+                Guisos & Carnes
+            </button>
+            <button onclick="filterMenu('pescados')" class="menu-tab bg-parchment-200 text-wood-900 hover:bg-gold-500/20 font-heading font-bold px-5 py-2.5 rounded text-xs sm:text-sm uppercase tracking-wider transition">
+                Pescados & Arroces
+            </button>
+            <button onclick="filterMenu('postres')" class="menu-tab bg-parchment-200 text-wood-900 hover:bg-gold-500/20 font-heading font-bold px-5 py-2.5 rounded text-xs sm:text-sm uppercase tracking-wider transition">
+                Postres Tradicionales
+            </button>
+            <button onclick="filterMenu('vinos')" class="menu-tab bg-parchment-200 text-wood-900 hover:bg-gold-500/20 font-heading font-bold px-5 py-2.5 rounded text-xs sm:text-sm uppercase tracking-wider transition">
+                Vinos & Bodega
+            </button>
+        </div>
+
+        <!-- Grid de Platos -->
+        <div id="dishesGrid" class="grid md:grid-cols-2 gap-8">
+            
+            <!-- ENTRANTES & TAPAS -->
+            <div class="dish-card entrantes bg-parchment-100 border border-gold-500/40 p-6 rounded-lg shadow-md hover:shadow-xl transition flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-start border-b border-gold-500/20 pb-2 mb-3">
+                        <h3 class="font-heading text-lg font-bold text-burgundy-900">Jamón Ibérico de Bellota 100% D.O. Jabugo</h3>
+                        <span class="font-heading text-lg font-bold text-gold-600 ml-4">24,00 €</span>
+                    </div>
+                    <p class="text-sm text-wood-800 leading-relaxed mb-4">
+                        Cortado a cuchillo al momento, acompañado de pan de cristal crujiente con tomate de huerta restregado y virgen extra picual.
+                    </p>
+                </div>
+                <div class="flex items-center justify-between pt-2 border-t border-gold-500/10">
+                    <span class="text-xs font-semibold text-wood-900/60 uppercase">Alérgenos:</span>
+                    <div class="flex gap-2">
+                        <span class="allergen-icon text-amber-700 bg-amber-100 p-1.5 rounded-full">
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M12 4l-4 3M12 8l4 3"/></svg>
+                            <span class="tooltip">Contiene Gluten</span>
+                        </span>
+                        <span class="allergen-icon text-purple-800 bg-purple-100 p-1.5 rounded-full">
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2h8l-1 7a5 5 0 01-10 0L8 2zm4 14v6"/></svg>
+                            <span class="tooltip">Contiene Sulfitos</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dish-card entrantes bg-parchment-100 border border-gold-500/40 p-6 rounded-lg shadow-md hover:shadow-xl transition flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-start border-b border-gold-500/20 pb-2 mb-3">
+                        <h3 class="font-heading text-lg font-bold text-burgundy-900">Croquetas Caseras de Jamón Ibérico</h3>
+                        <span class="font-heading text-lg font-bold text-gold-600 ml-4">14,50 €</span>
+                    </div>
+                    <p class="text-sm text-wood-800 leading-relaxed mb-4">
+                        Elaboradas según la receta secreta de Doña Carmen de 1935 con bechamel cremosa de leche entera de granja y rebozado crujiente.
+                    </p>
+                </div>
+                <div class="flex items-center justify-between pt-2 border-t border-gold-500/10">
+                    <span class="text-xs font-semibold text-wood-900/60 uppercase">Alérgenos:</span>
+                    <div class="flex gap-2">
+                        <span class="allergen-icon text-amber-700 bg-amber-100 p-1.5 rounded-full">
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M12 4l-4 3"/></svg>
+                            <span class="tooltip">Contiene Gluten</span>
+                        </span>
+                        <span class="allergen-icon text-blue-700 bg-blue-100 p-1.5 rounded-full">
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2h8v4H8zM7 6h10l1 16H6z"/></svg>
+                            <span class="tooltip">Contiene Lácteos</span>
+                        </span>
+                        <span class="allergen-icon text-yellow-700 bg-yellow-100 p-1.5 rounded-full">
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3C8 3 5 8 5 14c0 4 3 7 7 7s7-3 7-7c0-6-3-11-7-11z"/></svg>
+                            <span class="tooltip">Contiene Huevo</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dish-card entrantes bg-parchment-100 border border-gold-500/40 p-6 rounded-lg shadow-md hover:shadow-xl transition flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-start border-b border-gold-500/20 pb-2 mb-3">
+                        <h3 class="font-heading text-lg font-bold text-burgundy-900">Pulpo a la Gallega sobre Parmentier</h3>
+                        <span class="font-heading text-lg font-bold text-gold-600 ml-4">22,00 €</span>
+                    </div>
+                    <p class="text-sm text-wood-800 leading-relaxed mb-4">
+                        Pata de pulpo de roca cocida en su punto, sobre suave puré de cachelos y aderezado con Pimentón de la Vera D.O. y sal en escamas.
+                    </p>
+                </div>
+                <div class="flex items-center justify-between pt-2 border-t border-gold-500/10">
+                    <span class="text-xs font-semibold text-wood-900/60 uppercase">Alérgenos:</span>
+                    <div class="flex gap-2">
+                        <span class="allergen-icon text-rose-700 bg-rose-100 p-1.5 rounded-full">
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 12c-2 0-3-2-3-4s2-3 4-2"/></svg>
+                            <span class="tooltip">Contiene Moluscos / Mariscos</span>
+                        </span>
+                        <span class="allergen-icon text-blue-700 bg-blue-100 p-1.5 rounded-full">
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2h8v4H8zM7 6h10l1 16H6z"/></svg>
+                            <span class="tooltip">Contiene Lácteos</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dish-card entrantes bg-parchment-100 border border-gold-500/40 p-6 rounded-lg shadow-md hover:shadow-xl transition flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-start border-b border-gold-500/20 pb-2 mb-3">
+                        <h3 class="font-heading text-lg font-bold text-burgundy-900">Gambas al Ajillo en Cazuela de Barro</h3>
+                        <span class="font-heading text-lg font-bold text-gold-600 ml-4">18,50 €</span>
+                    </div>
+                    <p class="text-sm text-wood-800 leading-relaxed mb-4">
+                        Gambas blancas salteadas al momento en aceite de oliva virgen extra con láminas de ajo dorado, guindilla de Ibarra y un toque de fino de Jerez.
+                    </p>
+                </div>
+                <div class="flex items-center justify-between pt-2 border-t border-gold-500/10">
+                    <span class="text-xs font-semibold text-wood-900/60 uppercase">Alérgenos:</span>
+                    <div class="flex gap-2">
+                        <span class="allergen-icon text-rose-700 bg-rose-100 p-1.5 rounded-full">
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 12c-2 0-3-2-3-4s2-3 4-2"/></svg>
+                            <span class="tooltip">Contiene Mariscos</span>
+                        </span>
+                        <span class="allergen-icon text-purple-800 bg-purple-100 p-1.5 rounded-full">
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2h8l-1 7a5 5 0 01-10 0L8 2zm4 14v6"/></svg>
+                            <span class="tooltip">Contiene Sulfitos</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GUISOS & CARNES -->
+            <div class="dish-card guisos hidden bg-parchment-100 border border-gold-500/40 p-6 rounded-lg shadow-md hover:shadow-xl transition flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-start border-b border-gold-500/20 pb-2 mb-3">
+                        <h3 class="font-heading text-lg font-bold text-burgundy-900">Cochinillo Asado al Estilo Segoviano</h3>
+                        <span class="font-heading text-lg font-bold text-gold-600 ml-4">26,00 €</span>
+                    </div>
+                    <p class="text-sm text-wood-800 leading-relaxed mb-4">
+                        Cochinillo de Marca de Garantía asado lentamente en nuestro horno de leña con piel crujiente dorada y carne extremadamente tierna.
+                    </p>
+                </div>
+                <div class="flex items-center justify-between pt-2 border-t border-gold-500/10">
+                    <span class="text-xs font-semibold text-wood-900/60 uppercase">Alérgenos:</span>
+                    <div class="flex gap-2">
+                        <span class="allergen-icon text-purple-800 bg-purple-100 p-1.5 rounded-full">
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2h8l-1 7a5 5 0 01-10 0L8 2zm4 14v6"/></svg>
+                            <span class="tooltip">Contiene Sulfitos</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dish-card guisos hidden bg-parchment-100 border border-gold-500/40 p-6 rounded-lg shadow-md hover:shadow-xl transition flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-start border-b border-gold-500/20 pb-2 mb-3">
+                        <h3 class="font-heading text-lg font-bold text-burgundy-900">Rabo de Toro Estofado al Vino de la Ribera</h3>
+                        <span class="font-heading text-lg font-bold text-gold-600 ml-4">21,50 €</span>
+                    </div>
+                    <p class="text-sm text-wood-800 leading-relaxed mb-4">
+                        Guisado tradicional a fuego lento durante 6 horas en salsa melosa de vino tinto Ribera del Duero y verduras del tiempo.
+                    </p>
+                </div>
+                <div class="flex items-center justify-between pt-2 border-t border-gold-500/10">
+                    <span class="text-xs font-semibold text-wood-900/60 uppercase">Alérgenos:</span>
+                    <div class="flex gap-2">
+                        <span class="allergen-icon text-amber-700 bg-amber-100 p-1.5 rounded-full">
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M12 4l-4 3"/></svg>
+                            <span class="tooltip">Contiene Gluten</span>
+                        </span>
+                        <span class="allergen-icon text-purple-800 bg-purple-100 p-1.5 rounded-full">
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2h8l-1 7a5 5 0 01-10 0L8 2zm4 14v6"/></svg>
+                            <span class="tooltip">Contiene Sulfitos</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PESCADOS & ARROCES -->
+            <div class="dish-card pescados hidden bg-parchment-100 border border-gold-500/40 p-6 rounded-lg shadow-md hover:shadow-xl transition flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-start border-b border-gold-500/20 pb-2 mb-3">
+                        <h3 class="font-heading text-lg font-bold text-burgundy-900">Paella Valenciana a la Leña de Naranjo</h3>
+                        <span class="font-heading text-lg font-bold text-gold-600 ml-4">22,50 € <span class="text-xs text-wood-700 font-normal">/pers.</span></span>
+                    </div>
+                    <p class="text-sm text-wood-800 leading-relaxed mb-4">
+                        Arroz bomba con pollo campero, conejo, bajoqueta, garrofó y socarrat crujiente tradicional. (Mínimo 2 personas).
+                    </p>
+                </div>
+                <div class="flex items-center justify-between pt-2 border-t border-gold-500/10">
+                    <span class="text-xs font-semibold text-wood-900/60 uppercase">Alérgenos:</span>
+                    <div class="flex gap-2">
+                        <span class="allergen-icon text-purple-800 bg-purple-100 p-1.5 rounded-full">
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2h8l-1 7a5 5 0 01-10 0L8 2zm4 14v6"/></svg>
+                            <span class="tooltip">Contiene Sulfitos</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dish-card pescados hidden bg-parchment-100 border border-gold-500/40 p-6 rounded-lg shadow-md hover:shadow-xl transition flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-start border-b border-gold-500/20 pb-2 mb-3">
+                        <h3 class="font-heading text-lg font-bold text-burgundy-900">Bacalao Confitado al Pil-Pil Tradicional</h3>
+                        <span class="font-heading text-lg font-bold text-gold-600 ml-4">24,00 €</span>
+                    </div>
+                    <p class="text-sm text-wood-800 leading-relaxed mb-4">
+                        Lomo de bacalao del Atlántico confitado a baja temperatura ligado con su propia gelatina, ajos fritos y pimiento choricero.
+                    </p>
+                </div>
+                <div class="flex items-center justify-between pt-2 border-t border-gold-500/10">
+                    <span class="text-xs font-semibold text-wood-900/60 uppercase">Alérgenos:</span>
+                    <div class="flex gap-2">
+                        <span class="allergen-icon text-sky-700 bg-sky-100 p-1.5 rounded-full">
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 12c2.5-2 3.5-5 3.5-5s-3 1-5 3.5"/></svg>
+                            <span class="tooltip">Contiene Pescado</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- POSTRES TRADICIONALES -->
+            <div class="dish-card postres hidden bg-parchment-100 border border-gold-500/40 p-6 rounded-lg shadow-md hover:shadow-xl transition flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-start border-b border-gold-500/20 pb-2 mb-3">
+                        <h3 class="font-heading text-lg font-bold text-burgundy-900">Torrijas de la Abuela con Helado de Turrón</h3>
+                        <span class="font-heading text-lg font-bold text-gold-600 ml-4">7,50 €</span>
+                    </div>
+                    <p class="text-sm text-wood-800 leading-relaxed mb-4">
+                        Pan brioche infusionado en leche con canela y azahar, caramelizado al momento con soplete y acompañado de helado de Jijona.
+                    </p>
+                </div>
+                <div class="flex items-center justify-between pt-2 border-t border-gold-500/10">
+                    <span class="text-xs font-semibold text-wood-900/60 uppercase">Alérgenos:</span>
+                    <div class="flex gap-2">
+                        <span class="allergen-icon text-amber-700 bg-amber-100 p-1.5 rounded-full">
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M12 4l-4 3"/></svg>
+                            <span class="tooltip">Contiene Gluten</span>
+                        </span>
+                        <span class="allergen-icon text-blue-700 bg-blue-100 p-1.5 rounded-full">
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2h8v4H8zM7 6h10l1 16H6z"/></svg>
+                            <span class="tooltip">Contiene Lácteos</span>
+                        </span>
+                        <span class="allergen-icon text-yellow-700 bg-yellow-100 p-1.5 rounded-full">
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3C8 3 5 8 5 14c0 4 3 7 7 7s7-3 7-7c0-6-3-11-7-11z"/></svg>
+                            <span class="tooltip">Contiene Huevo</span>
+                        </span>
+                        <span class="allergen-icon text-orange-800 bg-orange-100 p-1.5 rounded-full">
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3c4 0 7 4 7 9s-3 9-7 9"/></svg>
+                            <span class="tooltip">Frutos Secos</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VINOS Y BODEGA -->
+            <div class="dish-card vinos hidden bg-parchment-100 border border-gold-500/40 p-6 rounded-lg shadow-md hover:shadow-xl transition flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-start border-b border-gold-500/20 pb-2 mb-3">
+                        <h3 class="font-heading text-lg font-bold text-burgundy-900">Pago de Carraovejas (D.O. Ribera del Duero)</h3>
+                        <span class="font-heading text-lg font-bold text-gold-600 ml-4">42,00 €</span>
+                    </div>
+                    <p class="text-sm text-wood-800 leading-relaxed mb-4">
+                        Tinto de crianza elegante con notas de fruta roja madura, tostados finos de roble francés y taninos sedosos.
+                    </p>
+                </div>
+                <div class="flex items-center justify-between pt-2 border-t border-gold-500/10">
+                    <span class="text-xs font-semibold text-wood-900/60 uppercase">Alérgenos:</span>
+                    <div class="flex gap-2">
+                        <span class="allergen-icon text-purple-800 bg-purple-100 p-1.5 rounded-full">
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2h8l-1 7a5 5 0 01-10 0L8 2zm4 14v6"/></svg>
+                            <span class="tooltip">Contiene Sulfitos</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Sección de Contacto y Ubicación -->
+    <section id="contacto" class="py-20 bg-wood-900 text-parchment-100 border-t-2 border-gold-500 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                
+                <div class="space-y-6">
+                    <span class="text-gold-400 font-subheading text-xl italic">Visítanos en el corazón de Madrid</span>
+                    <h2 class="font-heading text-3xl sm:text-4xl font-bold gold-text-gradient uppercase">Casa Don Antonio</h2>
+                    <p class="text-parchment-300 text-sm leading-relaxed">
+                        Ubicados a pocos pasos de la Puerta del Sol, nuestro establecimiento dispone de salones privados para eventos familiares y comidas de empresa.
+                    </p>
+
+                    <div class="space-y-4 pt-4 text-sm font-subheading">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded bg-burgundy-900 border border-gold-500 text-gold-400 flex items-center justify-center shrink-0">📍</div>
+                            <div>
+                                <h4 class="font-heading text-gold-400 text-base">Dirección</h4>
+                                <p class="text-parchment-200">Calle de la Cruz, 14, 28012 Madrid</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded bg-burgundy-900 border border-gold-500 text-gold-400 flex items-center justify-center shrink-0">📞</div>
+                            <div>
+                                <h4 class="font-heading text-gold-400 text-base">Reservas Telefónicas</h4>
+                                <p class="text-parchment-200">+34 912 34 56 78 / reservas@casadonantonio.es</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded bg-burgundy-900 border border-gold-500 text-gold-400 flex items-center justify-center shrink-0">⏰</div>
+                            <div>
+                                <h4 class="font-heading text-gold-400 text-base">Horario de Apertura</h4>
+                                <p class="text-parchment-200">De Martes a Domingo: 13:00 - 16:30 h | 20:00 - 23:30 h (Lunes Cerrado)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4">
+                        <button onclick="openModal()" class="gold-bg-gradient text-wood-900 font-heading font-bold px-8 py-3.5 rounded border border-gold-300 uppercase tracking-wider text-xs shadow-xl">
+                            Solicitar Reserva de Mesa
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mapa / Ilustración Clásica -->
+                <div class="ornate-frame bg-parchment-100 p-2 shadow-2xl rounded overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&q=80&w=800" alt="Ambiente Taberna Tradicional" class="w-full h-80 object-cover filter sepia-[0.2]">
+                    <div class="absolute bottom-4 left-4 right-4 bg-wood-900/90 border border-gold-500/50 p-4 rounded text-center backdrop-blur-sm">
+                        <span class="font-heading text-xs text-gold-400 uppercase tracking-widest block">Parking Concertado</span>
+                        <p class="text-xs text-parchment-200 mt-1">Plaza Mayor (2 horas gratuitas para nuestros clientes)</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-burgundy-900 text-parchment-300 text-xs py-8 border-t border-gold-500/40">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-4">
+            <p class="font-heading text-sm text-gold-400 tracking-wider uppercase">Casa Don Antonio • Taberna & Restaurante Tradicional</p>
+            <p>© 1924 - 2026 Casa Don Antonio S.L. Todos los derechos reservados. | Aviso Legal | Política de Privacidad</p>
+        </div>
+    </footer>
+
+    <!-- Modal de Reserva de Mesa -->
+    <div id="reservationModal" class="fixed inset-0 bg-wood-900/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-parchment-100 border-2 border-gold-500 rounded-xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative animate-fade-in-up">
+            
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-wood-900 hover:text-burgundy-700 font-bold text-xl">✕</button>
+
+            <div class="text-center mb-6">
+                <span class="font-subheading text-burgundy-700 italic text-base">Atención personalizada</span>
+                <h3 class="font-heading text-2xl font-bold text-wood-900 uppercase">Reserva tu Mesa</h3>
+                <div class="w-16 h-0.5 bg-gold-500 mx-auto my-2"></div>
+            </div>
+
+            <form id="bookingForm" onsubmit="handleBooking(event)" class="space-y-4 text-left">
+                <div>
+                    <label class="block font-heading text-xs uppercase text-wood-900 mb-1">Nombre Completo *</label>
+                    <input type="text" required placeholder="Ej. Don Carlos Mendoza" class="w-full bg-parchment-50 border border-gold-500/50 rounded px-3 py-2 text-sm text-wood-900 focus:outline-none focus:border-gold-500">
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block font-heading text-xs uppercase text-wood-900 mb-1">Teléfono *</label>
+                        <input type="tel" required placeholder="600 000 000" class="w-full bg-parchment-50 border border-gold-500/50 rounded px-3 py-2 text-sm text-wood-900 focus:outline-none focus:border-gold-500">
+                    </div>
+                    <div>
+                        <label class="block font-heading text-xs uppercase text-wood-900 mb-1">Comensales *</label>
+                        <select class="w-full bg-parchment-50 border border-gold-500/50 rounded px-3 py-2 text-sm text-wood-900 focus:outline-none focus:border-gold-500">
+                            <option>2 Personas</option>
+                            <option>3 Personas</option>
+                            <option>4 Personas</option>
+                            <option>5+ Personas (Grupo)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block font-heading text-xs uppercase text-wood-900 mb-1">Fecha *</label>
+                        <input type="date" required class="w-full bg-parchment-50 border border-gold-500/50 rounded px-3 py-2 text-sm text-wood-900 focus:outline-none focus:border-gold-500">
+                    </div>
+                    <div>
+                        <label class="block font-heading text-xs uppercase text-wood-900 mb-1">Turno *</label>
+                        <select class="w-full bg-parchment-50 border border-gold-500/50 rounded px-3 py-2 text-sm text-wood-900 focus:outline-none focus:border-gold-500">
+                            <option>Comida (13:30 h)</option>
+                            <option>Comida (15:00 h)</option>
+                            <option>Cena (20:30 h)</option>
+                            <option>Cena (22:00 h)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block font-heading text-xs uppercase text-wood-900 mb-1">Peticiones Especiales / Alergias</label>
+                    <textarea rows="2" placeholder="Indíquenos si requiere trona, alergias o mesa en terraza..." class="w-full bg-parchment-50 border border-gold-500/50 rounded px-3 py-2 text-sm text-wood-900 focus:outline-none focus:border-gold-500 resize-none"></textarea>
+                </div>
+
+                <div id="bookingStatus" class="hidden p-3 rounded text-xs font-semibold text-center"></div>
+
+                <button type="submit" id="bookingBtn" class="w-full gold-bg-gradient text-wood-900 font-heading font-bold py-3 rounded uppercase tracking-wider text-xs border border-gold-300 shadow-lg hover:brightness-110 transition">
+                    Confirmar Solicitud de Reserva
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts Interactivos -->
+    <script>
+        // Menú desplegable Móvil
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileDropdown = document.getElementById('mobileDropdown');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileDropdown.classList.toggle('hidden');
+        });
+
+        // Filtrado de la Carta por Categorías
+        function filterMenu(category) {
+            const tabs = document.querySelectorAll('.menu-tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('gold-bg-gradient', 'shadow', 'active');
+                tab.classList.add('bg-parchment-200');
+            });
+
+            event.currentTarget.classList.add('gold-bg-gradient', 'shadow', 'active');
+            event.currentTarget.classList.remove('bg-parchment-200');
+
+            const dishes = document.querySelectorAll('.dish-card');
+            dishes.forEach(dish => {
+                if (dish.classList.contains(category)) {
+                    dish.classList.remove('hidden');
+                } else {
+                    dish.classList.add('hidden');
+                }
+            });
+        }
+
+        // Control del Modal de Reserva
+        const modal = document.getElementById('reservationModal');
+
+        function openModal() {
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+        }
+
+        // Envío de Reserva con feedback
+        function handleBooking(e) {
+            e.preventDefault();
+            const btn = document.getElementById('bookingBtn');
+            const status = document.getElementById('bookingStatus');
+
+            btn.disabled = true;
+            btn.textContent = 'Procesando Reserva...';
+
+            setTimeout(() => {
+                status.className = "p-3 rounded text-xs font-semibold text-center bg-emerald-100 border border-emerald-400 text-emerald-800 block";
+                status.textContent = "¡Solicitud recibida con éxito! Le confirmaremos su mesa por WhatsApp o teléfono a la brevedad.";
+                btn.textContent = 'Reserva Solicitada ✓';
+                
+                setTimeout(() => {
+                    closeModal();
+                    document.getElementById('bookingForm').reset();
+                    status.className = "hidden";
+                    btn.disabled = false;
+                    btn.textContent = 'Confirmar Solicitud de Reserva';
+                }, 3000);
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
