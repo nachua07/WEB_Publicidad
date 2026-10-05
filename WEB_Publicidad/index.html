@@ -3,6 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Diseño y desarrollo de páginas web, tiendas online y aplicaciones a medida para negocios. Solicita una consulta sin compromiso a Nodo.">
+    <meta name="theme-color" content="#020617">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:title" content="Nodo SL | Desarrollo Web y Apps para Negocios">
+    <meta property="og:description" content="Diseño y desarrollo de páginas web, tiendas online y aplicaciones a medida para negocios.">
+    <meta name="twitter:card" content="summary">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <title>Nodo SL | Desarrollo Web y Apps para Negocios</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -28,9 +36,13 @@
     </script>
     <!-- Script para cargar tema guardado sin parpadeo -->
     <script>
-        if (localStorage.getItem('theme') === 'light') {
-            document.documentElement.classList.remove('dark');
-        } else {
+        try {
+            if (localStorage.getItem('theme') === 'light') {
+                document.documentElement.classList.remove('dark');
+            } else {
+                document.documentElement.classList.add('dark');
+            }
+        } catch (error) {
             document.documentElement.classList.add('dark');
         }
     </script>
@@ -77,14 +89,14 @@
                     <svg class="w-4 h-4 text-sky-500 dark:text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
                     <span>684 39 77 44</span>
                 </a>
-                <a href="mailto:nodoSL@outlook.es" class="hidden sm:flex text-slate-600 hover:text-sky-600 dark:text-slate-400 dark:hover:text-sky-400 items-center gap-2 transition">
+                <a href="mailto:nodoSL@outlook.es" class="flex text-slate-600 hover:text-sky-600 dark:text-slate-400 dark:hover:text-sky-400 items-center gap-2 transition">
                     <svg class="w-4 h-4 text-sky-500 dark:text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                     <span>nodoSL@outlook.es</span>
                 </a>
             </div>
             <div class="text-slate-600 dark:text-slate-400">
                 <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400 mr-2 animate-pulse"></span>
-                <span>Proyectos disponibles este mes</span>
+                <span>Solicita información sin compromiso</span>
             </div>
         </div>
     </div>
@@ -140,14 +152,14 @@
                 </div>
 
                 <!-- Botón Menú Móvil -->
-                <button id="menuBtn" class="md:hidden p-2 rounded-lg bg-slate-100 border border-slate-200 dark:bg-slate-900 dark:border-slate-800 text-slate-700 dark:text-slate-300">
+                <button id="menuBtn" type="button" aria-label="Abrir menú" aria-controls="mobileMenu" aria-expanded="false" class="md:hidden p-2 rounded-lg bg-slate-100 border border-slate-200 dark:bg-slate-900 dark:border-slate-800 text-slate-700 dark:text-slate-300">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
                 </button>
             </div>
         </div>
 
         <!-- Menú desplegable Móvil -->
-        <div id="mobileMenu" class="hidden md:hidden bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 px-4 pt-2 pb-6 space-y-3 text-slate-700 dark:text-slate-300">
+        <div id="mobileMenu" hidden class="md:hidden bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 px-4 pt-2 pb-6 space-y-3 text-slate-700 dark:text-slate-300">
             <a href="#servicios" class="block py-2 hover:text-sky-500 dark:hover:text-sky-400">Servicios</a>
             <a href="#soluciones" class="block py-2 hover:text-sky-500 dark:hover:text-sky-400">Soluciones Modelo</a>
             <a href="#presupuesto" class="block py-2 hover:text-sky-500 dark:hover:text-sky-400">Calculadora de Presupuesto</a>
@@ -220,7 +232,7 @@
                         </div>
                         <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-sky-500 dark:group-hover:text-sky-400 transition">Tiendas Online & Comercios</h3>
                         <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">
-                            Vende tus productos las 24/7. Pasarelas de pago seguras (Bizum, Tarjeta, Stripe), control de stock y diseño adaptado a móviles.
+                            Vende tus productos las 24 horas, los 7 días de la semana, con pagos por Bizum o tarjeta, control de stock y diseño adaptado a móviles.
                         </p>
                         <ul class="text-xs text-slate-700 dark:text-slate-300 space-y-2">
                             <li class="flex items-center gap-2">✓ Pago por Bizum y Tarjeta</li>
@@ -258,10 +270,10 @@
 
                 <!-- Filtros del portafolio/soluciones -->
                 <div class="flex justify-center gap-2 mb-12 flex-wrap">
-                    <button class="filter-btn active px-4 py-2 rounded-xl bg-sky-500 text-white text-sm font-semibold transition" data-filter="all">Todas</button>
-                    <button class="filter-btn px-4 py-2 rounded-xl bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-sm font-semibold border border-slate-200 dark:border-slate-800 transition" data-filter="restaurante">Restaurantes</button>
-                    <button class="filter-btn px-4 py-2 rounded-xl bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-sm font-semibold border border-slate-200 dark:border-slate-800 transition" data-filter="tienda">Tiendas</button>
-                    <button class="filter-btn px-4 py-2 rounded-xl bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-sm font-semibold border border-slate-200 dark:border-slate-800 transition" data-filter="app">Apps Empresariales</button>
+                    <button type="button" aria-pressed="true" class="filter-btn active px-4 py-2 rounded-xl bg-sky-500 text-white text-sm font-semibold transition" data-filter="all">Todas</button>
+                    <button type="button" aria-pressed="false" class="filter-btn px-4 py-2 rounded-xl bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-sm font-semibold border border-slate-200 dark:border-slate-800 transition" data-filter="restaurante">Restaurantes</button>
+                    <button type="button" aria-pressed="false" class="filter-btn px-4 py-2 rounded-xl bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-sm font-semibold border border-slate-200 dark:border-slate-800 transition" data-filter="tienda">Tiendas</button>
+                    <button type="button" aria-pressed="false" class="filter-btn px-4 py-2 rounded-xl bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-sm font-semibold border border-slate-200 dark:border-slate-800 transition" data-filter="app">Apps Empresariales</button>
                 </div>
 
                 <!-- Grid de Prototipos / Demos -->
@@ -280,7 +292,7 @@
                             <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed mb-4">
                                 Modelo con menú digital QR dinámico, panel de reservas automáticas por fecha y pasarela de pedidos rápida.
                             </p>
-                            <a href="assets/Ejemplo restaurante/ejemplo_restaurante.html" target="_blank" class="text-sky-600 dark:text-sky-400 text-xs font-bold hover:underline inline-flex items-center gap-1">Ver ejemplos &rarr;</a>
+                            <a href="assets/Ejemplo restaurante/ejemplo_restaurante.html" target="_blank" rel="noopener noreferrer" class="text-sky-600 dark:text-sky-400 text-xs font-bold hover:underline inline-flex items-center gap-1">Ver ejemplo &rarr;</a>
                         </div>
                     </div>
 
@@ -298,7 +310,7 @@
                             <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed mb-4">
                                 Catálogo ultra veloz con filtrado instantáneo, integración con pagos Bizum/Tarjeta y panel de pedidos simplificado.
                             </p>
-                            <a href="assets/Ejemplo_Tienda_Zapatos/tienda_zapatos.html" target="_blank" class="text-sky-600 dark:text-sky-400 text-xs font-bold hover:underline inline-flex items-center gap-1">Ver ejemplos &rarr;</a>
+                            <a href="assets/Ejemplo_Tienda_Zapatos/tienda_zapatos.html" target="_blank" rel="noopener noreferrer" class="text-sky-600 dark:text-sky-400 text-xs font-bold hover:underline inline-flex items-center gap-1">Ver ejemplo &rarr;</a>
                         </div>
                     </div>
 
@@ -316,26 +328,11 @@
                             <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed mb-4">
                                 Sistema nativo para control de stock, partes de trabajo diarios y comunicación directa con empleados y clientes.
                             </p>
-                            <a href="assets/Ejemplo_Aplicación/appconnect_pro.html" target="_blank" class="text-sky-600 dark:text-sky-400 text-xs font-bold hover:underline inline-flex items-center gap-1">Ver ejemplos &rarr;</a>
+                            <a href="assets/Ejemplo_Aplicación/appconnect_pro.html" target="_blank" rel="noopener noreferrer" class="text-sky-600 dark:text-sky-400 text-xs font-bold hover:underline inline-flex items-center gap-1">Ver ejemplo &rarr;</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Banner Especial para Primeros Clientes -->
-                <div class="mt-16 bg-gradient-to-r from-sky-100 via-blue-50 to-slate-100 dark:from-sky-900/40 dark:via-blue-900/30 dark:to-slate-900 border border-sky-300 dark:border-sky-500/30 rounded-3xl p-8 text-center relative overflow-hidden shadow-sm dark:shadow-none">
-                    <div class="max-w-2xl mx-auto space-y-4">
-                        <span class="inline-block px-3 py-1 rounded-full bg-sky-500/20 text-sky-700 dark:text-sky-300 text-xs font-bold uppercase tracking-wider">Lanzamiento Oficial</span>
-                        <h3 class="text-2xl font-extrabold text-slate-900 dark:text-white">¡Sé uno de nuestros primeros clientes!</h3>
-                        <p class="text-slate-700 dark:text-slate-300 text-sm">
-                            Ofrecemos un <strong>20% de descuento directo</strong> y soporte técnico ampliado de 6 meses para los primeros 5 negocios que confíen en Nodo SL para su desarrollo.
-                        </p>
-                        <div class="pt-2">
-                            <a href="#contacto" class="inline-block bg-sky-500 hover:bg-sky-400 text-white px-6 py-3 rounded-xl font-bold text-sm transition shadow-lg shadow-sky-500/20">
-                                Aprovechar Descuento de Lanzamiento
-                            </a>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -383,7 +380,7 @@
                         <div class="bg-slate-100 border border-slate-200 dark:bg-slate-950 dark:border-slate-800/80 rounded-2xl p-6 flex flex-col justify-between items-center text-center">
                             <span class="text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400 font-semibold">Estimación Aproximada</span>
                             <div class="my-6">
-                                <span id="totalPrice" class="text-5xl font-extrabold text-slate-900 dark:text-white">450</span><span class="text-3xl font-bold text-sky-500 dark:text-sky-400">€</span>
+                                <span id="totalPrice" aria-live="polite" class="text-5xl font-extrabold text-slate-900 dark:text-white">450</span><span class="text-3xl font-bold text-sky-500 dark:text-sky-400">€</span>
                                 <p class="text-[11px] text-slate-500 mt-2">*Impuestos no incluidos. Precio orientativo final sujeto a especificaciones.</p>
                             </div>
                             <a href="#contacto" class="w-full bg-sky-500 hover:bg-sky-400 text-white font-bold py-3 rounded-xl transition text-sm">
@@ -428,7 +425,7 @@
 
                     <!-- Formulario de Contacto -->
                     <div class="bg-white border border-slate-200 dark:bg-slate-900 dark:border-slate-800 rounded-3xl p-8 relative shadow-xl dark:shadow-none">
-                        <div id="formFeedback" class="hidden mb-6 p-4 rounded-xl text-sm font-semibold"></div>
+                        <div id="formFeedback" role="status" aria-live="polite" class="hidden mb-6 p-4 rounded-xl text-sm font-semibold"></div>
 
                         <form id="contactForm" action="https://formspree.io/f/mljdoozr" method="POST" class="space-y-4">
                             <div>
@@ -462,6 +459,11 @@
                                 <textarea id="mensaje" name="mensaje" rows="4" required placeholder="Cuéntanos brevemente qué necesitas..." class="w-full bg-slate-100 border border-slate-300 text-slate-900 dark:bg-slate-950 dark:border-slate-800 dark:text-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-sky-500 text-sm resize-none"></textarea>
                             </div>
 
+                            <div class="flex items-start gap-3 text-xs text-slate-600 dark:text-slate-400">
+                                <input id="privacyConsent" name="privacy_consent" type="checkbox" required class="mt-0.5 accent-sky-500">
+                                <label for="privacyConsent">He leído la <a href="privacidad.html" target="_blank" rel="noopener noreferrer" class="text-sky-600 dark:text-sky-400 underline">política de privacidad</a> y sé cómo se tratarán mis datos para responder a mi consulta.</label>
+                            </div>
+
                             <button type="submit" id="submitBtn" class="w-full bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-bold py-3.5 rounded-xl transition text-sm shadow-lg shadow-sky-500/20">
                                 Enviar Consulta a Nodo SL
                             </button>
@@ -472,27 +474,6 @@
             </div>
         </section>
     </main>
-
-    <!-- Banner de Cookies Provisional -->
-    <div id="cookieBanner" class="fixed bottom-4 left-4 right-4 md:left-auto md:right-6 md:max-w-md z-50 bg-white/95 dark:bg-slate-900/95 border border-slate-200 dark:border-slate-800 p-5 rounded-2xl shadow-2xl backdrop-blur-md transition-all duration-300">
-        <div class="flex items-start gap-3">
-            <div class="text-2xl p-2 bg-sky-500/10 rounded-xl text-sky-500 dark:text-sky-400">🍪</div>
-            <div class="space-y-2">
-                <h3 class="text-sm font-bold text-slate-900 dark:text-white">Aviso de Cookies (Provisional)</h3>
-                <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                    Utilizamos cookies técnicas y analíticas necesarias para garantizar el correcto funcionamiento de esta web y mejorar nuestros servicios digitales durante la fase de lanzamiento de <strong>Nodo SL (en constitución)</strong>.
-                </p>
-                <div class="flex flex-wrap gap-2 pt-2">
-                    <button id="acceptCookies" class="bg-sky-500 hover:bg-sky-400 text-white text-xs font-bold px-4 py-2 rounded-xl transition shadow-md shadow-sky-500/20">
-                        Aceptar todas
-                    </button>
-                    <button id="rejectCookies" class="bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-semibold px-4 py-2 rounded-xl transition">
-                        Solo necesarias
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Pie de página (Footer) -->
     <footer class="bg-white border-t border-slate-200 text-slate-600 dark:bg-slate-950 dark:border-slate-800/80 dark:text-slate-400 py-12 text-xs transition-colors">
@@ -510,7 +491,13 @@
                 <span class="text-slate-500">| Software & Web Development</span>
             </div>
 
-            <p class="text-slate-500">© 2026 Nodo SL. Todos los derechos reservados.</p>
+            <nav aria-label="Información legal" class="flex flex-wrap justify-center gap-x-5 gap-y-2">
+                <a href="aviso-legal.html" class="hover:text-sky-500">Aviso legal</a>
+                <a href="privacidad.html" class="hover:text-sky-500">Privacidad</a>
+                <a href="cookies.html" class="hover:text-sky-500">Cookies</a>
+            </nav>
+
+            <p class="text-slate-500">© 2026 Nodo. Todos los derechos reservados.</p>
         </div>
     </footer>
 
@@ -520,8 +507,16 @@
         const menuBtn = document.getElementById('menuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
         menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+            const isOpen = menuBtn.getAttribute('aria-expanded') === 'true';
+            menuBtn.setAttribute('aria-expanded', String(!isOpen));
+            menuBtn.setAttribute('aria-label', isOpen ? 'Abrir menú' : 'Cerrar menú');
+            mobileMenu.hidden = isOpen;
         });
+        mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+            mobileMenu.hidden = true;
+            menuBtn.setAttribute('aria-expanded', 'false');
+            menuBtn.setAttribute('aria-label', 'Abrir menú');
+        }));
 
         // 2. Control de Tema Claro / Oscuro con Persistencia
         const themeToggle = document.getElementById('themeToggle');
@@ -544,30 +539,11 @@
         themeToggle.addEventListener('click', () => {
             htmlElement.classList.toggle('dark');
             const isDark = htmlElement.classList.contains('dark');
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            try { localStorage.setItem('theme', isDark ? 'dark' : 'light'); } catch (error) { /* El tema sigue funcionando durante esta visita. */ }
             updateThemeIcon();
         });
 
-        // 3. Gestión del Banner de Cookies
-        const cookieBanner = document.getElementById('cookieBanner');
-        const acceptCookies = document.getElementById('acceptCookies');
-        const rejectCookies = document.getElementById('rejectCookies');
-
-        if (localStorage.getItem('cookies_accepted') !== null) {
-            cookieBanner.classList.add('hidden');
-        }
-
-        acceptCookies.addEventListener('click', () => {
-            localStorage.setItem('cookies_accepted', 'true');
-            cookieBanner.classList.add('hidden');
-        });
-
-        rejectCookies.addEventListener('click', () => {
-            localStorage.setItem('cookies_accepted', 'essential');
-            cookieBanner.classList.add('hidden');
-        });
-
-        // 4. Filtros de Soluciones Modelo (Portafolio)
+        // 3. Filtros de Soluciones Modelo (Portafolio)
         const filterBtns = document.querySelectorAll('.filter-btn');
         const solutionCards = document.querySelectorAll('.solution-card');
 
@@ -576,10 +552,12 @@
                 filterBtns.forEach(b => {
                     b.classList.remove('bg-sky-500', 'text-white', 'active');
                     b.classList.add('bg-white', 'dark:bg-slate-900', 'text-slate-600', 'dark:text-slate-400');
+                    b.setAttribute('aria-pressed', 'false');
                 });
                 
                 btn.classList.add('bg-sky-500', 'text-white', 'active');
                 btn.classList.remove('bg-white', 'dark:bg-slate-900', 'text-slate-600', 'dark:text-slate-400');
+                btn.setAttribute('aria-pressed', 'true');
 
                 const filter = btn.dataset.filter;
 
